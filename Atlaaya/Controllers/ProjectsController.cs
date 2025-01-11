@@ -1,9 +1,11 @@
 ﻿using Atlaaya.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace Atlaaya.Controllers
 {
+	[Authorize(Roles = "Admin")]
 	public class ProjectsController : Controller
 	{
 		private DataContext _db;

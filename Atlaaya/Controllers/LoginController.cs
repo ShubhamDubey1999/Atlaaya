@@ -1,5 +1,8 @@
 ﻿using Atlaaya.Data;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace Atlaaya.Controllers
 {
@@ -16,7 +19,7 @@ namespace Atlaaya.Controllers
 			return View();
 		}
 		[HttpPost]
-		public IActionResult Login(User user)
+		public async Task<IActionResult> Login(User user)
 		{
 			if (user == null)
 			{
@@ -29,6 +32,20 @@ namespace Atlaaya.Controllers
 				{
 					HttpContext.Session.SetInt32("UserId", isUser.Id);
 					HttpContext.Session.SetString("Role", isUser.Role);
+					var claims = new[]
+					{
+						new Claim(ClaimTypes.Name, isUser.Email),
+						new Claim(ClaimTypes.Role, isUser.Role) // Add roles or additional claims
+					};
+
+					var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+					var authenticationProperties = new AuthenticationProperties
+					{
+						IsPersistent = true // Persist the authentication cookie
+					};
+
+					await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
+						new ClaimsPrincipal(claimsIdentity), authenticationProperties);
 					return RedirectToAction("Index", "Home");
 				}
 				else
@@ -97,8 +114,9 @@ namespace Atlaaya.Controllers
 				return BadRequest(errors);
 			}
 		}
-		public IActionResult Logout()
+		public async Task<IActionResult> Logout()
 		{
+			await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
 			HttpContext.Session.Clear();
 			return RedirectToAction("Index", "Home");
 		}

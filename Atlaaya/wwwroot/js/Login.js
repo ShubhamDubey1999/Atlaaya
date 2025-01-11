@@ -34,7 +34,7 @@ function EnquireNow() {
         isValid = false;
         $("#EnqFirstName").css("border", "2px solid red");
     } else {
-        $("#EnqFirstName").css("border", ""); 
+        $("#EnqFirstName").css("border", "");
     }
 
     let email = $("#EnqEmail").val();
@@ -48,7 +48,7 @@ function EnquireNow() {
     let budget = $("#EnqBudget").val();
     if (isNullOrFalsy(budget) || !validateBudget(budget)) {
         isValid = false;
-        $("#EnqBudget").css("border", "2px solid red"); 
+        $("#EnqBudget").css("border", "2px solid red");
     } else {
         $("#EnqBudget").css("border", "");
     }
@@ -60,7 +60,9 @@ function EnquireNow() {
             async: true,
             data: enquire,
             success: (resp) => {
-                toastr.success(resp);
+                if (resp) {
+                    toastr.success("We will contact you soon!!!");
+                }
             },
             error: (err) => {
                 let error = "";
