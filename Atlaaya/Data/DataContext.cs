@@ -9,5 +9,6 @@ namespace Atlaaya.Data
         }
         public DbSet<User> User { get; set; }
         public DbSet<Projects> Projects { get; set; }
+        public DbSet<Enquire> Enquire { get; set; }
     }
 }

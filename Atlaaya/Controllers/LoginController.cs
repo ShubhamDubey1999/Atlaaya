@@ -20,7 +20,7 @@ namespace Atlaaya.Controllers
 		{
 			if (user == null)
 			{
-				return BadRequest();
+				return BadRequest("Invalid Username or Password");
 			}
 			else
 			{
@@ -29,7 +29,7 @@ namespace Atlaaya.Controllers
 				{
 					HttpContext.Session.SetInt32("UserId", isUser.Id);
 					HttpContext.Session.SetString("Role", isUser.Role);
-					return RedirectToAction("Index","Home");
+					return RedirectToAction("Index", "Home");
 				}
 				else
 				{
@@ -80,7 +80,23 @@ namespace Atlaaya.Controllers
 
 			return true;
 		}
-
+		[HttpPost]
+		public IActionResult Enquire(Enquire enquire)
+		{
+			if (ModelState.IsValid)
+			{
+				_db.Enquire.Add(enquire);
+				_db.SaveChanges();
+				return Ok(true);
+			}
+			else
+			{
+				var errors = ModelState.Values.SelectMany(v => v.Errors)
+									   .Select(e => e.ErrorMessage)
+									   .ToList();
+				return BadRequest(errors);
+			}
+		}
 		public IActionResult Logout()
 		{
 			HttpContext.Session.Clear();

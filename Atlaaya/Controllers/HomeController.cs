@@ -18,7 +18,7 @@ namespace Atlaaya.Controllers
 		{
 			TestimonialsProject testimonialsProject = new TestimonialsProject();
 			testimonialsProject.projects = _db.Projects.ToList();
-			testimonialsProject.projects.ForEach(x =>
+			testimonialsProject.projects?.ForEach(x =>
 			{
 				var imagePath = Path.Combine("Projects", x.ProjectImage);
 				if (System.IO.File.Exists(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", imagePath)))

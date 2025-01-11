@@ -28,7 +28,6 @@ namespace Atlaaya.Controllers
 					x.ProjectImage = "https://placehold.co/500x500";
 				}
 			});
-
 			return View(projects);
 		}
 
@@ -92,6 +91,11 @@ namespace Atlaaya.Controllers
 				_db.SaveChanges();
 			}
 			return RedirectToAction(nameof(Index));
+		}
+		public IActionResult Enquiries()
+		{
+			var enquiries = _db.Enquire.ToList();
+			return View(enquiries);
 		}
 	}
 }

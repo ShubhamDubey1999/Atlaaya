@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Atlaaya.Models.Enquire>
+<div class="container-fluid">
+    <div class="container text-center mt-5">
+        <h1 class="display-4">
+            <span class="font-italic display-4" style="font-family: serif">Enquiries</span>			
+        </h1>
+    </div>    
+    <table id="myTable" class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th scope="col" class="text-center">Id</th>
+                <th scope="col" class="text-center">Name</th>
+                <th scope="col" class="text-center">Email</th>
+                <th scope="col" class="text-center">Phone</th>
+                <th scope="col" class="text-center">Location</th>
+                <th scope="col" class="text-center">Budget</th>
+                <th scope="col" class="text-center">Message</th>
+                @* <th scope="col" class="text-center">Details</th> *@
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <th class="text-center" scope="row">@item.Id</th>
+                    <td class="text-center">@item.FirstName</td>
+                    <td class="text-center">@item.Email</td>
+                    <td class="text-center">@item.Phone</td>
+                    <td class="text-center">@item.Location</td>
+                    <td class="text-center">@item.Budget</td>
+                    <td class="text-center">@item.Message</td>
+                    @* <td><button type="button" class="btn btn-info">View</button></td> *@
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<script>
+    $(document).ready(function () {
+        $('#myTable').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                {
+                    extend: 'excelHtml5', 
+                    text: 'Export to Excel',
+                    className: 'btn btn-success', 
+                    exportOptions: {
+                        columns: ':not(:last-child)'
+                    }
+                },
+                // {
+                //     extend: 'pdfHtml5',  // Enables PDF export
+                //     text: 'Export to PDF',
+                //     className: 'btn btn-danger' // Custom button style
+                // }
+            ]
+        });
+        $(".dt-buttons").addClass("float-lg-right");
+    });
+</script>

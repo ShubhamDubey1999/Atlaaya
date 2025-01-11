@@ -15,35 +15,35 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-6 image-side" id="imageSide">
-			<div class="image-container m-5" id="imageContainer">
+			<div class="image-container" id="imageContainer">
 				<img src="@Model.ProjectImage" alt="" />
-			</div>			
+			</div>
 		</div>
-
 		<!-- Form Side -->
 		<div class="col-md-6 form-side">
 			<h2 class="modal-title text-muted" id="">
 				Add Project
+				<a type="button" class="btn btn-dark float-lg-right m-2" asp-controller="Projects" asp-action="Index">Back To Projects</a>
 			</h2>
 			<form method="post" asp-controller="Projects" asp-action="Create" enctype="multipart/form-data">
 				<input type="text"
 					   class="form-control form-input mt-2 w-100"
-					   placeholder="Project Name" asp-for="ProjectName"/>
+					   placeholder="Project Name" asp-for="ProjectName" />
 				<input type="text"
 					   class="form-control form-input mt-2 w-100"
-					   placeholder="Value1" asp-for="Value1"/>
+					   placeholder="Value1" asp-for="Value1" />
 				<input type="text"
 					   class="form-control form-input mt-2 w-100"
-					   placeholder="Project Type" asp-for="ProjectType"/>
+					   placeholder="Project Type" asp-for="ProjectType" />
 				<input type="text"
 					   class="form-control form-input mt-2 w-100"
-					   placeholder="Area" asp-for="Area"/>
+					   placeholder="Area" asp-for="Area" />
 				<input type="text"
 					   class="form-control form-input mt-2 w-100"
 					   placeholder="Location" asp-for="Location" />
 				<input type="file"
 					   class="form-control form-input mt-2 w-100"
-					   placeholder="Choose File" id="fileInput" asp-for=ProjectImageFile onchange="displayImage(event)"/>
+					   placeholder="Choose File" id="fileInput" asp-for=ProjectImageFile onchange="displayImage(event)" />
 				<div class="text-center p-5">
 					<button class="enquire-btn">Submit</button>
 				</div>

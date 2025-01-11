@@ -2,350 +2,351 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Chalk Studio</title>
-    <link rel="stylesheet" href="~/css/custom.css" />
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
-    <link rel="icon"
-          type="image/x-icon"
-          href="~/assets/logo.jpg" />
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-          rel="stylesheet" />
-    <link href="~/css/toastr.css" rel="stylesheet" />
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <!-- Owl Carousel CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
-    <link rel="stylesheet" href="~/css/style.css" />
-    <link rel="stylesheet" href="https://cdn.datatables.net/2.2.1/css/dataTables.dataTables.css" />
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Atlaaya Studio</title>
+	<link rel="stylesheet" href="~/css/custom.css" />
+	<link rel="stylesheet" href="~/css/site.css"  />
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet"  />
+	<link rel="icon" type="image/x-icon" href="~/assets/logo.jpg"  />
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"  />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"  />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js" ></script>
+	<!-- Owl Carousel CSS -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" >
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" >
+	<link rel="stylesheet" href="~/css/style.css"  />
+	@* <link rel="stylesheet" href="https://cdn.datatables.net/2.2.1/css/dataTables.dataTables.css"/> *@
+	<link href="https://cdn.datatables.net/v/dt/jszip-3.10.1/dt-2.2.1/b-3.2.0/b-html5-3.2.0/fh-4.0.1/datatables.min.css" rel="stylesheet">
 
+	
+	<link href="~/css/toastr.css" rel="stylesheet"  />
 </head>
 <body>
-    <nav class="sticky-top navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand ml-5" href="#">Chalk Studio</a>
-        <button class="navbar-toggler"
-                type="button"
-                data-toggle="collapse"
-                data-target="#navbarNav"
-                aria-controls="navbarNav"
-                aria-expanded="false"
-                aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-                @if (context?.HttpContext?.Session.GetString("Role") == "Admin")
-                {
-                    <li class="nav-item p-2 nav-fs dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Admin
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" asp-controller="Projects" asp-action="Index">Projects</a>
-                            <a class="dropdown-item" href="#">Testimonials</a>
-                            <a class="dropdown-item" href="#">Team</a>
-                            <a class="dropdown-item" href="#">Career</a>
-                            <a class="dropdown-item" href="#">Blogs</a>
-                            <a class="dropdown-item" href="#">Users</a>
-                            <div class="dropdown-divider"></div>
-                        </div>
-                    </li>
-                }
-                <li class="nav-item p-2 active">
-                    <a class="nav-link nav-fs" asp-controller="Home" asp-action="Index">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item p-2">
-                    <a class="nav-link nav-fs" asp-controller="Home" asp-action="About">About</a>
-                </li>
-                <li class="nav-item p-2">
-                    <a class="nav-link nav-fs" asp-controller="Home" asp-action="Projects">Projects</a>
-                </li>
-                <li class="nav-item p-2">
-                    <a class="nav-link nav-fs" asp-controller="Home" asp-action="Careers">Careers</a>
-                </li>
-                <li class="nav-item p-2">
-                    <a class="nav-link nav-fs" asp-controller="Home" asp-action="Gallery">Gallery</a>
-                </li>
-                <li class="nav-item p-2">
-                    <a class="nav-link nav-fs" href="./blogs.html">Blogs</a>
-                </li>
+	<nav class="sticky-top navbar navbar-expand-lg navbar-light bg-light">
+		<a class="navbar-brand ml-5" asp-controller="Home" asp-action="Index">Atlaaya Studio</a>
+		<button class="navbar-toggler"
+				type="button"
+				data-toggle="collapse"
+				data-target="#navbarNav"
+				aria-controls="navbarNav"
+				aria-expanded="false"
+				aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNav">
+			<ul class="navbar-nav ml-auto">
+				@if (context?.HttpContext?.Session.GetString("Role") == "Admin")
+				{
+					<li class="nav-item p-2 nav-fs dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							Admin
+						</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" asp-controller="Projects" asp-action="Index">Projects</a>
+							<a class="dropdown-item" href="#">Testimonials</a>
+							<a class="dropdown-item" href="#">Team</a>
+							<a class="dropdown-item" href="#">Career</a>
+							<a class="dropdown-item" href="#">Blogs</a>
+							<a class="dropdown-item" href="#">Users</a>
+							<a class="dropdown-item" asp-controller="Projects" asp-action="Enquiries">Enquiries</a>
+							<div class="dropdown-divider"></div>
+						</div>
+					</li>
+				}
+				<li class="nav-item p-2 active">
+					<a class="nav-link nav-fs" asp-controller="Home" asp-action="Index">Home <span class="sr-only">(current)</span></a>
+				</li>
+				<li class="nav-item p-2">
+					<a class="nav-link nav-fs" asp-controller="Home" asp-action="About">About</a>
+				</li>
+				<li class="nav-item p-2">
+					<a class="nav-link nav-fs" asp-controller="Home" asp-action="Projects">Projects</a>
+				</li>
+				<li class="nav-item p-2">
+					<a class="nav-link nav-fs" asp-controller="Home" asp-action="Careers">Careers</a>
+				</li>
+				<li class="nav-item p-2">
+					<a class="nav-link nav-fs" asp-controller="Home" asp-action="Gallery">Gallery</a>
+				</li>
+				<li class="nav-item p-2">
+					<a class="nav-link nav-fs" href="./blogs.html">Blogs</a>
+				</li>
 
-                @if (context?.HttpContext?.Session.GetString("Role") == null)
-                {
-                    <li class="nav-item p-2">
-                        <a class="nav-link nav-fs" href="#" data-toggle="modal"
-                           data-target="#LoginModalCenter">Login</a>
-                    </li>
-                }
-                else
-                {
-                    <li class="nav-item p-2">
-                        <a class="nav-link nav-fs" asp-controller="Login" asp-action="Logout">Logout</a>
-                    </li>
-                }
+				@if (context?.HttpContext?.Session.GetString("Role") == null)
+				{
+					<li class="nav-item p-2">
+						<a class="nav-link nav-fs" href="#" data-toggle="modal"
+						   data-target="#LoginModalCenter">Login</a>
+					</li>
+				}
+				else
+				{
+					<li class="nav-item p-2">
+						<a class="nav-link nav-fs" asp-controller="Login" asp-action="Logout">Logout</a>
+					</li>
+				}
 
-                <li class="nav-item">
-                    <a class="enquire-nav-btn"
-                       data-toggle="modal"
-                       data-target="#exampleModalCenter"
-                       href="#">Enquire Now</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-    <div>
-        <main role="main">
-            @RenderBody()
-        </main>
-    </div>
-    <!-- Modal -->
-    <div class="modal fade"
-         id="exampleModalCenter"
-         tabindex="-1"
-         role="dialog"
-         aria-labelledby="exampleModalCenterTitle"
-         aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content container">
-                <div class="modal-header">
-                    <h2 class="modal-title text-muted" id="exampleModalCenterTitle">
-                        Say Hello
-                    </h2>
-                    <button type="button"
-                            class="close"
-                            data-dismiss="modal"
-                            aria-label="Close">
-                        <span style="font-size: larger" aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <input type="text"
-                               class="form-control form-input mt-2 w-100"
-                               placeholder="First Name" />
-                        <input type="text"
-                               class="form-control form-input mt-2 w-100"
-                               placeholder="Last Name" />
-                        <input type="text"
-                               class="form-control form-input mt-2 w-100"
-                               placeholder="Email" />
-                        <input type="text"
-                               class="form-control form-input mt-2 w-100"
-                               placeholder="Phone" />
-                        <input type="text"
-                               class="form-control form-input mt-2 w-100"
-                               placeholder="Location / Area" />
-                        <input type="text"
-                               class="form-control form-input mt-2 w-100"
-                               placeholder="Enter budget in Lakh" />
-                        <input type="text"
-                               class="form-control form-input mt-2 w-100"
-                               placeholder="Message" />
-                        <div class="text-center p-5">
-                            <a class="enquire-btn" href="#">Submit</a>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+				<li class="nav-item">
+					<a class="enquire-nav-btn"
+					   data-toggle="modal"
+					   data-target="#exampleModalCenter"
+					   href="#">Enquire Now</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	<div>
+		<main role="main">
+			@RenderBody()
+		</main>
+	</div>
+	<!-- Modal -->
+	<div class="modal fade"
+		 id="exampleModalCenter"
+		 tabindex="-1"
+		 role="dialog"
+		 aria-labelledby="exampleModalCenterTitle"
+		 aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content container">
+				<div class="modal-header">
+					<h2 class="modal-title text-muted" id="exampleModalCenterTitle">
+						Say Hello
+					</h2>
+					<button type="button"
+							class="close"
+							data-dismiss="modal"
+							aria-label="Close">
+						<span style="font-size: larger" aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form id="EnquireForm">
+						<input type="text"
+							   class="form-control form-input mt-2 w-100"
+							   placeholder="First Name" id="EnqFirstName" name="FirstName" />
+						<input type="text"
+							   class="form-control form-input mt-2 w-100"
+							   placeholder="Last Name" name="LastName" />
+						<input type="email"
+							   class="form-control form-input mt-2 w-100"
+							   placeholder="Email" name="Email" id="EnqEmail" />
+						<input type="text"
+							   class="form-control form-input mt-2 w-100"
+							   placeholder="Phone" name="Phone" maxlength="10" />
+						<input type="text"
+							   class="form-control form-input mt-2 w-100"
+							   placeholder="Location / Area" name="Location" />
+						<input type="text"
+							   class="form-control form-input mt-2 w-100"
+							   placeholder="Enter budget in Lakh" name="Budget" id="EnqBudget" />
+						<input type="text"
+							   class="form-control form-input mt-2 w-100"
+							   placeholder="Message" name="Message" />
+						<div class="text-center p-5">
+							<button type="button" id="btnEnquire" onclick="EnquireNow()" class="enquire-btn">Submit</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
 
 
-    <div class="modal fade"
-         id="LoginModalCenter"
-         tabindex="-1"
-         role="dialog"
-         aria-labelledby="LoginModalCenterTitle"
-         aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content container">
-                <div class="modal-header">
-                    <h2 class="modal-title text-muted" id="LoginModalCenterTitle">
-                        Login
-                    </h2>
-                    <button type="button"
-                            class="close"
-                            data-dismiss="modal"
-                            aria-label="Close">
-                        <span style="font-size: larger" aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form id="LoginForm">
-                        <input type="email"
-                               class="form-control form-input mt-2 w-100"
-                               placeholder="Email" name="Email" required />
-                        <input type="password"
-                               class="form-control form-input mt-2 w-100"
-                               placeholder="Password" name="Password" required />
-                        <div class="text-center p-5">
-                            <button type="button" onclick="Login()" class="enquire-btn">Login</button>
-                        </div>
-                        <p class="text-center small fw-bold mt-2 pt-1 mb-0">
-                            Don't have an account? <a href="#" data-toggle="modal" data-target="#SignUpModalCenter" class="link-danger">Register</a>
-                        </p>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade"
-         id="SignUpModalCenter"
-         tabindex="-1"
-         role="dialog"
-         aria-labelledby="SignUpModalCenterTitle"
-         aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content container">
-                <div class="modal-header">
-                    <h2 class="modal-title text-muted" id="SignUpModalCenterTitle">
-                        Register
-                    </h2>
-                    <button type="button"
-                            class="close"
-                            data-dismiss="modal"
-                            aria-label="Close">
-                        <span style="font-size: larger" aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form id="RegisterForm">
-                        <input type="text"
-                               class="form-control form-input mt-2 w-100"
-                               placeholder="Name" name="Username" required />
-                        <input type="email"
-                               class="form-control form-input mt-2 w-100"
-                               placeholder="Email" name="Email" required />
-                        <input type="password"
-                               class="form-control form-input mt-2 w-100"
-                               placeholder="Password" name="Password" required />
-                        <input type="password"
-                               class="form-control form-input mt-2 w-100"
-                               placeholder="Confirm Password" name="Password" required />
-                        <div class="text-center p-5">
-                            <button type="button" onclick="Register()" class="enquire-btn">Register</button>
-                        </div>
-                        <p class="text-center small fw-bold mt-2 pt-1 mb-0">
-                            If Already have an account! <a href="#!" onclick="closeRegister()" class="link-danger">Login</a>
-                        </p>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    <footer style="background: #000">
-        <div class="col-md-12 text-white p-5">
-            <div class="row">
-                <div class="col-md-4" style="font-size: smaller">
-                    ©2025 Chalk Studio Interiors. Website Designed by HINTT
-                </div>
-                <div class="col-md-8">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="row">
-                                <div class="col-md-1">
-                                    <i style="font-size: x-large"
-                                       class="fa fa-envelope-o"
-                                       aria-hidden="true"></i>
-                                </div>
-                                <div class="col-md-1">
-                                    <i style="font-size: x-large"
-                                       class="fa fa-linkedin-square"
-                                       aria-hidden="true"></i>
-                                </div>
-                                <div class="col-md-1">
-                                    <i style="font-size: x-large"
-                                       class="fa fa-instagram"
-                                       aria-hidden="true"></i>
-                                </div>
-                                <div class="col-md-1">
-                                    <i style="font-size: x-large"
-                                       class="fa fa-facebook-square"
-                                       aria-hidden="true"></i>
-                                </div>
-                                <div class="col-md-1">
-                                    <i style="font-size: x-large"
-                                       class="fa fa-whatsapp"
-                                       aria-hidden="true"></i>
-                                </div>
-                                <div class="col-md-1">
-                                    <i style="font-size: x-large"
-                                       class="fa fa-map-marker"
-                                       aria-hidden="true"></i>
-                                </div>
-                                <div class="col-md-6">
-                                    <p>
-                                        <em>
-                                            <a class="text-white float-right"
-                                               href="#"
-                                               id="back-to-top">Back To Top</a>
-                                        </em>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-12">
-                <p class="text-center p-3">Call Us- 09599197669</p>
-            </div>
-        </div>
-        @* DONT REMOVE THIS *@
-        @* <iframe hidden src="https://page.botpenguin.com/67815df7f8f04105fff3f4eb/67815dc5ce9cc99d97c8cf16"></iframe> *@
-    </footer>
-    <script src="~/js/site.js" asp-append-version="true"></script>    
-    @await RenderSectionAsync("Scripts", required: false)
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="https://cdn.datatables.net/2.2.1/js/dataTables.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-    <!-- Owl Carousel JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery.serializeObject/2.0.3/jquery.serializeObject.min.js" integrity="sha512-DNziaT2gAUenXiDHdhNj6bfk1Ivv72gpxOeMT+kFKXB2xG/ZRtGhW2lDJI9a+ZNCOas/rp4XAnvnjtGeMHRNyg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script>
-        $("#back-to-top").click(function () {
-            $("body,html").animate(
-                {
-                    scrollTop: 0,
-                },
-                400
-            );
-            return false;
-        });
-    </script>
-    <script>
-        $(document).ready(function () {
-            $(".owl-carousel").owlCarousel({
-                loop: true,
-                margin: 20,
-                nav: true,
-                dots: true,
-                autoplay: true,
-                autoplayTimeout: 5000,
-                responsive: {
-                    0: { items: 1 },
-                    600: { items: 2 },
-                    1000: { items: 4 }
-                }
-            });
-        });
-    </script>
-    <script>
-        function closeRegister() {
-            $('#SignUpModalCenter').modal('hide');
-        }
-    </script>
+	<div class="modal fade"
+		 id="LoginModalCenter"
+		 tabindex="-1"
+		 role="dialog"
+		 aria-labelledby="LoginModalCenterTitle"
+		 aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content container">
+				<div class="modal-header">
+					<h2 class="modal-title text-muted" id="LoginModalCenterTitle">
+						Login
+					</h2>
+					<button type="button"
+							class="close"
+							data-dismiss="modal"
+							aria-label="Close">
+						<span style="font-size: larger" aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form id="LoginForm">
+						<input type="email"
+							   class="form-control form-input mt-2 w-100"
+							   placeholder="Email" name="Email" required />
+						<input type="password"
+							   class="form-control form-input mt-2 w-100"
+							   placeholder="Password" name="Password" required />
+						<div class="text-center p-5">
+							<button type="button" id="btnLogin" onclick="Login()" class="enquire-btn">Login</button>
+						</div>
+						<p class="text-center small fw-bold mt-2 pt-1 mb-0">
+							Don't have an account? <a href="#" data-toggle="modal" data-target="#SignUpModalCenter" class="link-danger">Register</a>
+						</p>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade"
+		 id="SignUpModalCenter"
+		 tabindex="-1"
+		 role="dialog"
+		 aria-labelledby="SignUpModalCenterTitle"
+		 aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content container">
+				<div class="modal-header">
+					<h2 class="modal-title text-muted" id="SignUpModalCenterTitle">
+						Register
+					</h2>
+					<button type="button"
+							class="close"
+							data-dismiss="modal"
+							aria-label="Close">
+						<span style="font-size: larger" aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form id="RegisterForm">
+						<input type="text"
+							   class="form-control form-input mt-2 w-100"
+							   placeholder="Name" name="Username" required />
+						<input type="email"
+							   class="form-control form-input mt-2 w-100"
+							   placeholder="Email" name="Email" required />
+						<input type="password"
+							   class="form-control form-input mt-2 w-100"
+							   placeholder="Password" name="Password" required />
+						<input type="password"
+							   class="form-control form-input mt-2 w-100"
+							   placeholder="Confirm Password" name="Password" required />
+						<div class="text-center p-5">
+							<button type="button" id="btnRegister" onclick="Register()" class="enquire-btn">Register</button>
+						</div>
+						<p class="text-center small fw-bold mt-2 pt-1 mb-0">
+							If Already have an account! <a href="#!" onclick="closeRegister()" class="link-danger">Login</a>
+						</p>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<footer style="background: #000">
+		<div class="col-md-12 text-white p-5">
+			<div class="row">
+				<div class="col-md-4" style="font-size: smaller">
+					©2025 Chalk Studio Interiors. Website Designed by HINTT
+				</div>
+				<div class="col-md-8">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="row">
+								<div class="col-md-1">
+									<i style="font-size: x-large"
+									   class="fa fa-envelope-o"
+									   aria-hidden="true"></i>
+								</div>
+								<div class="col-md-1">
+									<i style="font-size: x-large"
+									   class="fa fa-linkedin-square"
+									   aria-hidden="true"></i>
+								</div>
+								<div class="col-md-1">
+									<i style="font-size: x-large"
+									   class="fa fa-instagram"
+									   aria-hidden="true"></i>
+								</div>
+								<div class="col-md-1">
+									<i style="font-size: x-large"
+									   class="fa fa-facebook-square"
+									   aria-hidden="true"></i>
+								</div>
+								<div class="col-md-1">
+									<i style="font-size: x-large"
+									   class="fa fa-whatsapp"
+									   aria-hidden="true"></i>
+								</div>
+								<div class="col-md-1">
+									<i style="font-size: x-large"
+									   class="fa fa-map-marker"
+									   aria-hidden="true"></i>
+								</div>
+								<div class="col-md-6">
+									<p>
+										<em>
+											<a class="text-white float-right"
+											   href="#"
+											   id="back-to-top">Back To Top</a>
+										</em>
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-12">
+				<p class="text-center p-3">Call Us- 09599197669</p>
+			</div>
+		</div>
+		@* DONT REMOVE THIS *@
+		@* <iframe hidden src="https://page.botpenguin.com/67815df7f8f04105fff3f4eb/67815dc5ce9cc99d97c8cf16"></iframe> *@
+	</footer>
+	<script src="~/js/site.js" ></script>
+	@await RenderSectionAsync("Scripts", required: false)
+	@* <script src="https://code.jquery.com/jquery-3.6.0.min.js" ></script> *@
+	<script src="https://cdn.jsdelivr.net/npm/@@popperjs/core@2.5.4/dist/umd/popper.min.js" ></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" ></script>
+	@* <script src="https://cdn.datatables.net/2.2.1/js/dataTables.js"></script> *@
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+	<script src="https://cdn.datatables.net/v/dt/jszip-3.10.1/dt-2.2.1/b-3.2.0/b-html5-3.2.0/fh-4.0.1/datatables.min.js"></script>
+	@* <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js" ></script> *@
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" ></script>
+	<!-- Owl Carousel JS -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" ></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery.serializeObject/2.0.3/jquery.serializeObject.min.js" integrity="sha512-DNziaT2gAUenXiDHdhNj6bfk1Ivv72gpxOeMT+kFKXB2xG/ZRtGhW2lDJI9a+ZNCOas/rp4XAnvnjtGeMHRNyg==" crossorigin="anonymous" referrerpolicy="no-referrer" ></script>
+	<script>
+		$("#back-to-top").click(function () {
+			$("body,html").animate(
+				{
+					scrollTop: 0,
+				},
+				400
+			);
+			return false;
+		});
+	</script>
+	<script>
+		$(document).ready(function () {
+			$(".owl-carousel").owlCarousel({
+				loop: true,
+				margin: 20,
+				nav: true,
+				dots: true,
+				autoplay: true,
+				autoplayTimeout: 5000,
+				responsive: {
+					0: { items: 1 },
+					600: { items: 2 },
+					1000: { items: 4 }
+				}
+			});			
+		});
+	</script>
+	<script>
+		function closeRegister() {
+			$('#SignUpModalCenter').modal('hide');
+		}
+	</script>
 
-    <script src="~/js/login.js"></script>
-    @* DONT REMOVE THIS *@
-    @* <script id="messenger-widget-b" src="https://cdn.botpenguin.com/website-bot.js" defer>67815df7f8f04105fff3f4eb,67815dc5ce9cc99d97c8cf16</script> *@
+	<script src="~/js/login.js"></script>
+	@* DONT REMOVE THIS *@
+	@* <script id="messenger-widget-b" src="https://cdn.botpenguin.com/website-bot.js" defer>67815df7f8f04105fff3f4eb,67815dc5ce9cc99d97c8cf16</script> *@
 </body>
 </html>
