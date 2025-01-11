@@ -1,0 +1,73 @@
+﻿@model Atlaaya.Models.Projects
+<style>
+	.image-side {
+		background-image: url('your-image.jpg');
+		background-size: cover;
+		background-position: center;
+		height: 100vh;
+	}
+
+	.form-side {
+		padding: 30px;
+		height: 100vh;
+	}
+</style>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-6 image-side" id="imageSide">
+			<div class="image-container m-5" id="imageContainer">
+				<img src="@Model.ProjectImage" alt="" />
+			</div>			
+		</div>
+
+		<!-- Form Side -->
+		<div class="col-md-6 form-side">
+			<h2 class="modal-title text-muted" id="">
+				Add Project
+			</h2>
+			<form method="post" asp-controller="Projects" asp-action="Create" enctype="multipart/form-data">
+				<input type="text"
+					   class="form-control form-input mt-2 w-100"
+					   placeholder="Project Name" asp-for="ProjectName"/>
+				<input type="text"
+					   class="form-control form-input mt-2 w-100"
+					   placeholder="Value1" asp-for="Value1"/>
+				<input type="text"
+					   class="form-control form-input mt-2 w-100"
+					   placeholder="Project Type" asp-for="ProjectType"/>
+				<input type="text"
+					   class="form-control form-input mt-2 w-100"
+					   placeholder="Area" asp-for="Area"/>
+				<input type="text"
+					   class="form-control form-input mt-2 w-100"
+					   placeholder="Location" asp-for="Location" />
+				<input type="file"
+					   class="form-control form-input mt-2 w-100"
+					   placeholder="Choose File" id="fileInput" asp-for=ProjectImageFile onchange="displayImage(event)"/>
+				<div class="text-center p-5">
+					<button class="enquire-btn">Submit</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<script>
+	function displayImage(event) {
+		var file = event.target.files[0];
+
+		if (file) {
+			// Create an object URL for the selected file
+			var imageUrl = URL.createObjectURL(file);
+
+			// Create an img element and set its src attribute to the selected image
+			var img = document.createElement('img');
+			img.src = imageUrl;
+			img.alt = 'Selected Image';
+			img.name = ''
+			// Empty the image container and append the new img element
+			var container = document.getElementById('imageContainer');
+			container.innerHTML = ''; // Clear any previous image
+			container.appendChild(img);
+		}
+	}
+</script>

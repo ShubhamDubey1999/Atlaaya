@@ -1,0 +1,23 @@
+﻿/* Success toast color */
+.toast-success {
+    background-color: #4CAF50 !important;
+    color: white;
+}
+
+/* Error toast color */
+.toast-error {
+    background-color: #F44336 !important;
+    color: white;
+}
+
+/* Warning toast color */
+.toast-warning {
+    background-color: #FF9800 !important;
+    color: white;
+}
+
+/* Info toast color */
+.toast-info {
+    background-color: #2196F3 !important;
+    color: white;
+}

@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@inject IHttpContextAccessor context;
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -7,11 +8,13 @@
     <link rel="stylesheet" href="~/css/custom.css" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
     <link rel="icon"
           type="image/x-icon"
           href="~/assets/logo.jpg" />
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
           rel="stylesheet" />
+    <link href="~/css/toastr.css" rel="stylesheet" />
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -19,49 +22,82 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
     <link rel="stylesheet" href="~/css/style.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.2.1/css/dataTables.dataTables.css" />
 
 </head>
 <body>
-        <nav class="sticky-top navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand ml-5" href="#">Chalk Studio</a>
-            <button class="navbar-toggler"
-                    type="button"
-                    data-toggle="collapse"
-                    data-target="#navbarNav"
-                    aria-controls="navbarNav"
-                    aria-expanded="false"
-                    aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item p-2 active">
-                        <a class="nav-link nav-fs" asp-controller="Home" asp-action="Index">Home <span class="sr-only">(current)</span></a>
+    <nav class="sticky-top navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand ml-5" href="#">Chalk Studio</a>
+        <button class="navbar-toggler"
+                type="button"
+                data-toggle="collapse"
+                data-target="#navbarNav"
+                aria-controls="navbarNav"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                @if (context?.HttpContext?.Session.GetString("Role") == "Admin")
+                {
+                    <li class="nav-item p-2 nav-fs dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Admin
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" asp-controller="Projects" asp-action="Index">Projects</a>
+                            <a class="dropdown-item" href="#">Testimonials</a>
+                            <a class="dropdown-item" href="#">Team</a>
+                            <a class="dropdown-item" href="#">Career</a>
+                            <a class="dropdown-item" href="#">Blogs</a>
+                            <a class="dropdown-item" href="#">Users</a>
+                            <div class="dropdown-divider"></div>
+                        </div>
                     </li>
-                    <li class="nav-item p-2">
+                }
+                <li class="nav-item p-2 active">
+                    <a class="nav-link nav-fs" asp-controller="Home" asp-action="Index">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item p-2">
                     <a class="nav-link nav-fs" asp-controller="Home" asp-action="About">About</a>
-                    </li>
-                    <li class="nav-item p-2">
+                </li>
+                <li class="nav-item p-2">
                     <a class="nav-link nav-fs" asp-controller="Home" asp-action="Projects">Projects</a>
-                    </li>
-                    <li class="nav-item p-2">
+                </li>
+                <li class="nav-item p-2">
                     <a class="nav-link nav-fs" asp-controller="Home" asp-action="Careers">Careers</a>
-                    </li>
-                    <li class="nav-item p-2">
+                </li>
+                <li class="nav-item p-2">
                     <a class="nav-link nav-fs" asp-controller="Home" asp-action="Gallery">Gallery</a>
-                    </li>
+                </li>
+                <li class="nav-item p-2">
+                    <a class="nav-link nav-fs" href="./blogs.html">Blogs</a>
+                </li>
+
+                @if (context?.HttpContext?.Session.GetString("Role") == null)
+                {
                     <li class="nav-item p-2">
-                        <a class="nav-link nav-fs" href="./blogs.html">Blogs</a>
+                        <a class="nav-link nav-fs" href="#" data-toggle="modal"
+                           data-target="#LoginModalCenter">Login</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="enquire-nav-btn"
-                           data-toggle="modal"
-                           data-target="#exampleModalCenter"
-                           href="#">Enquire Now</a>
+                }
+                else
+                {
+                    <li class="nav-item p-2">
+                        <a class="nav-link nav-fs" asp-controller="Login" asp-action="Logout">Logout</a>
                     </li>
-                </ul>
-            </div>
-        </nav>
+                }
+
+                <li class="nav-item">
+                    <a class="enquire-nav-btn"
+                       data-toggle="modal"
+                       data-target="#exampleModalCenter"
+                       href="#">Enquire Now</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
     <div>
         <main role="main">
             @RenderBody()
@@ -113,6 +149,90 @@
                         <div class="text-center p-5">
                             <a class="enquire-btn" href="#">Submit</a>
                         </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade"
+         id="LoginModalCenter"
+         tabindex="-1"
+         role="dialog"
+         aria-labelledby="LoginModalCenterTitle"
+         aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content container">
+                <div class="modal-header">
+                    <h2 class="modal-title text-muted" id="LoginModalCenterTitle">
+                        Login
+                    </h2>
+                    <button type="button"
+                            class="close"
+                            data-dismiss="modal"
+                            aria-label="Close">
+                        <span style="font-size: larger" aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="LoginForm">
+                        <input type="email"
+                               class="form-control form-input mt-2 w-100"
+                               placeholder="Email" name="Email" required />
+                        <input type="password"
+                               class="form-control form-input mt-2 w-100"
+                               placeholder="Password" name="Password" required />
+                        <div class="text-center p-5">
+                            <button type="button" onclick="Login()" class="enquire-btn">Login</button>
+                        </div>
+                        <p class="text-center small fw-bold mt-2 pt-1 mb-0">
+                            Don't have an account? <a href="#" data-toggle="modal" data-target="#SignUpModalCenter" class="link-danger">Register</a>
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade"
+         id="SignUpModalCenter"
+         tabindex="-1"
+         role="dialog"
+         aria-labelledby="SignUpModalCenterTitle"
+         aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content container">
+                <div class="modal-header">
+                    <h2 class="modal-title text-muted" id="SignUpModalCenterTitle">
+                        Register
+                    </h2>
+                    <button type="button"
+                            class="close"
+                            data-dismiss="modal"
+                            aria-label="Close">
+                        <span style="font-size: larger" aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="RegisterForm">
+                        <input type="text"
+                               class="form-control form-input mt-2 w-100"
+                               placeholder="Name" name="Username" required />
+                        <input type="email"
+                               class="form-control form-input mt-2 w-100"
+                               placeholder="Email" name="Email" required />
+                        <input type="password"
+                               class="form-control form-input mt-2 w-100"
+                               placeholder="Password" name="Password" required />
+                        <input type="password"
+                               class="form-control form-input mt-2 w-100"
+                               placeholder="Confirm Password" name="Password" required />
+                        <div class="text-center p-5">
+                            <button type="button" onclick="Register()" class="enquire-btn">Register</button>
+                        </div>
+                        <p class="text-center small fw-bold mt-2 pt-1 mb-0">
+                            If Already have an account! <a href="#!" onclick="closeRegister()" class="link-danger">Login</a>
+                        </p>
                     </form>
                 </div>
             </div>
@@ -176,19 +296,20 @@
                 <p class="text-center p-3">Call Us- 09599197669</p>
             </div>
         </div>
+        @* DONT REMOVE THIS *@
+        @* <iframe hidden src="https://page.botpenguin.com/67815df7f8f04105fff3f4eb/67815dc5ce9cc99d97c8cf16"></iframe> *@
     </footer>
-    @* <script src="~/lib/jquery/dist/jquery.min.js"></script> *@
-    @* <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script> *@
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>    
+    @await RenderSectionAsync("Scripts", required: false)
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+    <script src="https://cdn.datatables.net/2.2.1/js/dataTables.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <!-- Owl Carousel JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery.serializeObject/2.0.3/jquery.serializeObject.min.js" integrity="sha512-DNziaT2gAUenXiDHdhNj6bfk1Ivv72gpxOeMT+kFKXB2xG/ZRtGhW2lDJI9a+ZNCOas/rp4XAnvnjtGeMHRNyg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
         $("#back-to-top").click(function () {
             $("body,html").animate(
@@ -217,11 +338,14 @@
             });
         });
     </script>
+    <script>
+        function closeRegister() {
+            $('#SignUpModalCenter').modal('hide');
+        }
+    </script>
 
-
+    <script src="~/js/login.js"></script>
+    @* DONT REMOVE THIS *@
+    @* <script id="messenger-widget-b" src="https://cdn.botpenguin.com/website-bot.js" defer>67815df7f8f04105fff3f4eb,67815dc5ce9cc99d97c8cf16</script> *@
 </body>
 </html>
-
-
-
-

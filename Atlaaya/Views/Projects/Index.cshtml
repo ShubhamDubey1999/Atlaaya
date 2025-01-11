@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Atlaaya.Models.Projects>
+<div class="container-fluid">
+	<div class="container text-center mt-5">
+		<h1 class="display-4">
+			<span class="font-italic display-4" style="font-family: serif">Our</span>
+			Projects
+		</h1>
+	</div>
+	<a type="button" class="btn btn-info float-md-end m-2" asp-controller="Projects" asp-action="Create">Add New</a>
+	<table id="myTable" class="table table-bordered table-hover">
+		<thead>
+			<tr>
+				<th scope="col" class="text-center">S.No.</th>
+				<th scope="col" class="text-center w-25">Image</th>
+				<th scope="col" class="text-center">Name</th>
+				<th scope="col" class="text-center">Edit</th>
+				<th scope="col" class="text-center">Delete</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var item in Model)
+			{
+				<tr>
+					<th class="text-center" scope="row">@item.Id</th>
+					<td class="text-center"><img src="@item.ProjectImage" class="w-50 h-50" /></td>
+					<td class="text-center">@item.ProjectName</td>
+					<td class="text-center"><a type="button" asp-controller="Projects" asp-action="Create" asp-route-Id="@item.Id" class="btn btn-secondary">Edit</a></td>
+					<td class="text-center"><a type="button" asp-controller="Projects" asp-action="Delete" asp-route-Id="@item.Id" class="btn btn-danger">Delete</a></td>
+					@* <td class="text-center"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></td>
+				<td class="text-center"><i class="fa fa-trash-o" aria-hidden="true"></i></td> *@
+				</tr>
+			}
+		</tbody>
+	</table>
+</div>
+
+<script>
+	$(document).ready(function () {
+		$('#myTable').DataTable();
+	});
+</script>
