@@ -1,69 +1,4 @@
-﻿<style>
-    .join-btn {
-        display: inline-block;
-        padding: 20px 100px;
-        background-color: #b8b8b8;
-        color: #2e2e2e;
-        text-decoration: none;
-        border-radius: 0px;
-        border: 1px solid black;
-    }
-    .parallax-section {
-        position: relative;
-        height: 800px;
-        overflow: hidden;
-    }
-
-
-    .parallax-image {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-size: cover;
-        background-attachment: fixed;
-        background-position: center;
-        z-index: 1;
-        background-image:url('../assets/about.jpg')
-    }
-
-    .parallax-content {
-        position: relative;
-        z-index: 2;
-        height: 100%;
-        display: flex;
-        align-items: center;
-    }
-
-    .parallax-text {
-        color: white;
-        padding: 20px;
-        border-radius: 5px;
-    }
-
-    #team-section .card {
-        border: 0;
-    }
-    .styled-section {
-        width: 275px;
-        height: 160px;
-        background-color: #ffffff;
-    }
-
-    .carousel-inner img {
-        width: 100%;
-        height: auto;
-    }
-
-    .carousel-caption {
-        top: 10px;
-        left: 10px;
-        right: auto;
-        bottom: auto;
-        text-align: left;
-    }
-</style>
+﻿
 <div class="container mt-5">
     <h1 class="text-center m-5">About Us</h1>
 </div>
@@ -84,10 +19,10 @@
         </div>
     </div>
 </div>
-<div class="container m-5">
+<div class="container m-5 ourProcessMain">
     <div class="row">
         <div class="col-md-6">
-            <h6 class="font-weight-bolder">OUR PROCESS</h6>
+            <h6 class="heading">OUR PROCESS</h6>
         </div>
         <div class="col-md-6">
             <p>
@@ -249,7 +184,7 @@
     <div class="container pt-5 pb-5">
         <div class="row">
             <div class="col-md-6">
-                <h6 class="font-weight-bolder">OUR INSPIRATION</h6>
+                <h6 class="headingBH">OUR INSPIRATION</h6>
             </div>
             <div class="col-md-6">
                 <p>
@@ -322,7 +257,7 @@
     <div class="container pt-5 pb-5">
         <div class="row">
             <div class="col-md-6">
-                <h6 class="font-weight-bolder">FEAURED ON</h6>
+                <h6 class="headingBH">FEAURED ON</h6>
             </div>
             <div class="col-md-6">
                 <div class="row">
@@ -367,7 +302,7 @@
     <div class="container pt-5 pb-5">
         <div class="row">
             <div class="col-md-6">
-                <h6 class="font-weight-bolder text-white">Our Team</h6>
+                <h6 class="headingBH text-white">Our Team</h6>
             </div>
             <div class="col-md-6">
                 <p class="text-white">
@@ -549,6 +484,7 @@
         <source src="~/assets/file1.mp4" type="video/mp4" />
     </video>
 </div>
+
 <script>
     $(".carousel").carousel({ interval: 2000 });
 </script>

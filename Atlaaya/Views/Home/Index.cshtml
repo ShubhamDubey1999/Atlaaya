@@ -1,4 +1,5 @@
-﻿<div class="video-background-holder">
+﻿<!-- Banner-section -->
+<div class="video-background-holder">
     <div class="video-background-overlay"></div>
     <video playsinline="playsinline"
            autoplay="autoplay"
@@ -6,22 +7,23 @@
            loop="loop">
         <source src="~/assets/file.mp4" type="video/mp4" />
     </video>
-    <div class="video-background-content container h-100">
+    <div class="video-background-content container-fluid h-100 bannerWrap">
         <div class="d-flex mt-5 align-items-center">
-            <div class="w-100 text-white">
-                <h1 class="display-2">Impactful Spaces</h1>
-                <h1 class="display-2">Elevated Design</h1>
+            <div class="w-100 text-white bannrTXT">
+                <h1 class="heading">Impactful Spaces</h1>
+                <h1 class="heading">Elevated Design</h1>
                 <p class="text-center p-5"></p>
                 <p class="text-center p-4"></p>
             </div>
         </div>
         <div class="text-center">
-            <p class="p-5 text-white" style="font-size: smaller">SCROLL DOWN</p>
+            <p class="p-5 scrollTXT">SCROLL DOWN</p>
         </div>
     </div>
 </div>
 
-<div class="col-md-12 mt-5 p-3">
+<!-- About-section -->
+<div class="col-md-12 mt-5 p-3 aboutMain">
     <div class="row">
         <div class="col-md-6 text-center w-100">
             <img class="w-50"
@@ -29,15 +31,16 @@
                  src="~/assets/logo.jpg"
                  alt="" />
         </div>
-        <div class="col-md-6">
-            <p class="text-muted" style="font-size: large">
+        <div class="col-md-6 col-sm-12 col-12">
+            <p class="paraTXT">
                 As interior designers, we transform spaces into captivating
                 environments that reflect your unique style. Our interior designing
                 firm is dedicated to crafting bespoke solutions that harmonize
                 functionality with aesthetic appeal. With a keen eye for detail, our
                 interior design studio brings dreams to life, ensuring every project
                 is a masterpiece.
-                <br /><br />
+            </p>
+            <p class="paraTXT">
                 Our interior designing firm boasts a team of seasoned professionals
                 dedicated to transforming your spaces into personalized
                 masterpieces. Elevate your living spaces with our expertise, where
@@ -45,19 +48,25 @@
                 us to redefine your interiors, turning your aspirations into
                 beautifully crafted realities.
             </p>
+       
         </div>
     </div>
 </div>
 
-<div class="col-md-12 mt-5">
+<!-- OurWork-section -->
+<div class="col-md-12 mt-5 ourworkWrap">
     <hr />
     <div class="row mt-2">
-        <div class="col-md-4 pl-5"><strong>OUR WORK</strong></div>
-        <div class="col-md-8 pl-5 container justify-content-end">
-            <button class="btn m-2 pl-5 pr-5 nav-fs">Commercial</button>
-            <button class="btn m-2 pl-5 pr-5 nav-fs">Hospitality</button>
-            <button class="btn m-2 pl-5 pr-5 nav-fs">Residential</button>
-            <button class="btn m-2 pl-5 pr-5 nav-fs">Traditional</button>
+        <div class="col-md-4 pl-5">
+            <h4 class="heading">OUR WORK</h4>
+            </div>
+        <div class="col-md-8 col-sm-12 col-12">
+           <div class="tabBTN">
+                <button class="btn m-2 pl-5 pr-5 nav-fs">Commercial</button>
+                <button class="btn m-2 pl-5 pr-5 nav-fs">Hospitality</button>
+                <button class="btn m-2 pl-5 pr-5 nav-fs">Residential</button>
+                <button class="btn m-2 pl-5 pr-5 nav-fs">Traditional</button>
+            </div>
         </div>
     </div>
     <div class="col-md-12 mt-3">
@@ -182,7 +191,59 @@
 <!-- <div class="text-center m-2">
   <a class="btn btn-dark" type="button">View All Projects</button>
 </div> -->
-<div class="bg-3 mt-5">
+
+
+
+<div class="container-fluid testiWrap mt-5">
+    <h2 class="heading">TESTIMONIALS</h2>
+    <div class="owl-carousel owl-theme">
+        <!-- Testimonial Item 1 -->
+        <div class="item">
+            <div class="card p-3 text-center">
+                <img src="~/assets/test1.jpg" class="card-img-top mb-3" alt="Image">
+                <h5 class="card-title">Galaxy Group Office</h5>
+                <p class="card-text">
+                    "Their skilled designers transformed our vision into reality with brilliant sketches, creative illustrations, and captivating mood boards."
+                </p>
+                <p><strong>Nisha Awasthi | Resident</strong></p>
+            </div>
+        </div>
+        <!-- Testimonial Item 2 -->
+        <div class="item">
+            <div class="card p-3 text-center">
+                <img src="~/assets/test2.jpg" class="card-img-top mb-3" alt="Image">
+                <h5 class="card-title">Emaar Palm Terraces</h5>
+                <p class="card-text">
+                    "Home isn’t a place, it’s a feeling. When we were looking to create a beautiful feeling of love, Chalk Studio made that a reality for us."
+                </p>
+                <p><strong>Rajiv Tandon | Resident</strong></p>
+            </div>
+        </div>
+        <!-- Testimonial Item 3 -->
+        <div class="item">
+            <div class="card p-3 text-center">
+                <img src="~/assets/test3.jpg" class="card-img-top mb-3" alt="Image">
+                <h5 class="card-title">The Ultima</h5>
+                <p class="card-text">
+                    "Priyanka and her team exceeded our expectations! They were so easy to work with and understood what we wanted."
+                </p>
+                <p><strong>Shubhada | Resident</strong></p>
+            </div>
+        </div>
+
+    </div>
+    <div class="text-center mt-5">
+        <a class="enquire-btn" href="#">Enquire Now</a>
+    </div>
+</div>
+
+
+
+
+
+
+<!-- TESTIMONIALS-section -->
+@* <div class="bg-3 mt-5">
     <h6 class="text-center p-5">TESTIMONIALS</h6>
 
     <div id="carouselExampleIndicators"
@@ -407,4 +468,4 @@
     <div class="text-center p-5">
         <a class="enquire-btn" href="#">Enquire Now</a>
     </div>
-</div>
+</div> *@
