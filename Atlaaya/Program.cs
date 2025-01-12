@@ -1,7 +1,7 @@
 global using Atlaaya.Models;
-using Atlaaya.Data;
+global using Atlaaya.Data;
+global using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 // Configure authentication using cookies
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)

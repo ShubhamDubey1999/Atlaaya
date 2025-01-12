@@ -1,4 +1,3 @@
-using Atlaaya.Data;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -39,7 +38,21 @@ namespace Atlaaya.Controllers
 		}
 		public IActionResult Projects()
 		{
-			return View();
+			TestimonialsProject testimonialsProject = new TestimonialsProject();
+			testimonialsProject.projects = _db.Projects.ToList();
+			testimonialsProject.projects?.ForEach(x =>
+			{
+				var imagePath = Path.Combine("Projects", x.ProjectImage);
+				if (System.IO.File.Exists(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", imagePath)))
+				{
+					x.ProjectImage = "/" + imagePath;
+				}
+				else
+				{
+					x.ProjectImage = "https://placehold.co/500x500";
+				}
+			});
+			return View(testimonialsProject);
 		}
 		public IActionResult Careers()
 		{

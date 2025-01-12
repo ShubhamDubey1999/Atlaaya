@@ -56,17 +56,13 @@
 		var file = event.target.files[0];
 
 		if (file) {
-			// Create an object URL for the selected file
 			var imageUrl = URL.createObjectURL(file);
-
-			// Create an img element and set its src attribute to the selected image
 			var img = document.createElement('img');
 			img.src = imageUrl;
 			img.alt = 'Selected Image';
 			img.name = ''
-			// Empty the image container and append the new img element
 			var container = document.getElementById('imageContainer');
-			container.innerHTML = ''; // Clear any previous image
+			container.innerHTML = '';
 			container.appendChild(img);
 		}
 	}
