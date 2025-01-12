@@ -1,6 +1,6 @@
 ﻿* {margin: 0;padding: 0;box-sizing: border-box;font-size: 16px;font-family: helvetica-w01-roman, helvetica-w02-roman, helvetica-lt-w10-roman, sans-serif;}
 
-.enquire-btn{display:inline-block;padding:10px 80px;background-color:#2e2e2e;color:#fff;text-decoration:none;border-radius:0;border:1px solid #000;}
+.enquire-btn{display:inline-block;padding:10px 80px;background-color:#2e2e2e;color:#fff;text-decoration:none;border-radius:0;border:1px solid #000;width:100%;}
 .enquire-nav-btn{display:inline-block;padding:14px 20px;background-color:#2e2e2e;color:#fff;text-decoration:none;border-radius:0;border:1px solid #000;}
 .enquire-nav-btn:hover{text-decoration:none;color:#e0dddd;}
 .enquire-btn:hover{text-decoration:none;color:#e0dddd;}
@@ -22,3 +22,4 @@ hr{border:1px solid #e5e5e5;margin:0;padding:0;}
 .navbar{padding:0 0!important;}
 form input::placeholder{color:#000!important;font-size:13px;}
 .form-input{outline:0;border-width:0 0 1px;border-color:grey;}
+.enquire-btn.BTNB{width:auto;}

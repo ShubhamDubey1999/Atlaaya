@@ -2,6 +2,7 @@
 /* ------ Common-Css ------- */
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus{box-shadow:none;}
 .headingBH{font-size: 16px;font-weight:600;text-decoration: none;letter-spacing: 0.5em;line-height: normal;}
+hr{margin:7px 0!important;}
 /* ---------- Home-Page ---------- */
 /*Banner-Section*/
 .bannerWrap {
@@ -37,7 +38,9 @@
 .ourProjectMain .nav-fs{border:1px solid #030303;}
 .ourProjectMain .nav-fs:hover{border-color:#030303;color:#fff;background-color:#030303;}
 
-
+.workTXT{position:relative;top:70px;}
+.workTXT .head{font-size:23px;}
+.workTXT .paraTXT{font-size:14px;margin-bottom:0;}
 
 .join-btn{display:inline-block;padding:20px 100px;background-color:#b8b8b8;color:#2e2e2e;text-decoration:none;border-radius:0;border:1px solid #000;}
 .parallax-section{position:relative;height:800px;overflow:hidden;}
@@ -48,6 +51,66 @@
 .styled-section{width:275px;height:160px;background-color:#fff;}
 .carousel-inner img{width:100%;height:auto;}
 .carousel-caption{top:10px;left:10px;right:auto;bottom:auto;text-align:left;}
+
+.TestmnImage{border:1px solid #000;}
+
+
+/*Footer-Section*/
+.footerWrap{background:#000;}
+.footerWrap .heading{font-size:15px;}
+.callnoBH {margin-top:30px;}
+.callnoBH a{font-size:16px; color:#fff;margin-right:250px;text-decoration:none;}
+.socailWrap{margin-right:200px;}
+.socailWrap a{margin-left:20px;margin-right:20px;}
+
+/*Gallery-Section*/
+.GallerWrap{padding-top:20px;padding-bottom:60px;}
+.GallerWrap img{max-width:100%;height:auto;vertical-align:middle;display:inline-block;}
+.GallerWrap .gallery{display:grid;grid-gap:10px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));grid-auto-rows:200px;grid-auto-flow:dense;}
+.GallerWrap .image-container{overflow:hidden;position:relative;border-radius:8px;box-shadow:0 4px 6px rgba(0,0,0,.1);}
+.GallerWrap .gallery>div{display:flex;justify-content:center;align-items:center;}
+.GallerWrap .gallery>div>img{width:100%;height:100%;object-fit:cover;border-radius:5px;}
+.GallerWrap .gallery .tall{grid-row:span 2;}
+.GallerWrap .image-container img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .4s ease,filter .4s ease;}
+.GallerWrap .image-container:hover img{transform:scale(1.1);filter:brightness(.9);}
+.GallerWrap .image-container.tall{grid-row:span 2;}
+
+/* Modal Styles */
+}
+
+.GallerWrap .modal {
+    display: none;
+    position: fixed;
+    top: 33%;
+    left: 30%;
+    width: 40%;
+    height: 50%;
+    background: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+
+.GallerWrap .modal img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+
+.GallerWrap .modal-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 30px;
+    color: white;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+}
+
 
 
 
@@ -76,9 +139,20 @@
 }
 /* ##Device = Most of the Smartphones Mobiles (Portrait), ##Screen = B/w 320px to 479px */
 @media (min-width:320px) and (max-width:480px){
-    .bannerWrap .heading {font-size: 40px;margin-left: 30px;}
-    .video-background-holder{height:auto;}
-    .bannerWrap .bannrTXT{position:relative;top:60px;}
-    .ourworkWrap .nav-fs{width:45%;}
-    .ourworkWrap .heading{text-align: center;margin-bottom: 20px;}
+.bannerWrap .heading {font-size: 40px;margin-left: 30px;}
+.video-background-holder{height:100vh;}
+.bannerWrap .bannrTXT{position:relative;top:60px;}
+.ourworkWrap .nav-fs{width:45%;}
+.ourworkWrap .heading{text-align: center;margin-bottom: 20px;}
+.socailWrap{margin-right:0px;margin-bottom:20px;}
+.socailWrap a{margin-left:7px;margin-right:7px;}
+.order1{order:1;}
+.order2{order:2;}
+.order3{order:3;}
+.footerWrap .heading{font-size:13px;}
+.callnoBH a{margin-right:0;}
+.callnoBH{margin-top:0;margin-bottom:20px;}
+.backTOP{margin:10px auto;display:table;}
+.bannerWrap .scrollTXT{position:absolute;bottom:75px;left:100px;}
+.owl-theme .owl-nav, .owl-theme .owl-dots .owl-dot span{display:none;}
  }

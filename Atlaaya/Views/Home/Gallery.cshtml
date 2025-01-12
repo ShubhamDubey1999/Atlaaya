@@ -1,27 +1,124 @@
-﻿<div class="container text-center m-5">
+﻿
+<style>
+
+</style>
+
+<div class="container text-center m-5">
     <h1 class="display-4">
         <span class="font-italic chalk-font display-4" style="font-family: serif;">The</span> Gallery
     </h1>
 </div>
-<div class="container">
-    <div class="lightbox" data-mdb-lightbox-init>
-        <div class="row">
-            <div class="col-lg-6">
-                <img src="https://mdbcdn.b-cdn.net/img/Photos/Thumbnails/Slides/1.webp"
-                     data-mdb-img="https://mdbcdn.b-cdn.net/img/Photos/Slides/1.webp"
-                     alt="Table Full of Spices"
-                     class="w-100 mb-2 mb-md-4 shadow-1-strong rounded" />
-                <img src="https://mdbcdn.b-cdn.net/img/Photos/Thumbnails/Square/1.webp"
-                     data-mdb-img="https://mdbcdn.b-cdn.net/img/Photos/Square/1.webp"
-                     alt="Coconut with Strawberries"
-                     class="w-100 shadow-1-strong rounded" />
-            </div>
-            <div class="col-lg-6">
-                <img src="https://mdbcdn.b-cdn.net/img/Photos/Thumbnails/Vertical/1.webp"
-                     data-mdb-img="https://mdbcdn.b-cdn.net/img/Photos/Vertical/1.webp"
-                     alt="Dark Roast Iced Coffee"
-                     class="w-100 shadow-1-strong rounded" />
-            </div>
+<div class="container GallerWrap">
+    <div class="gallery">
+        <div class="image-container">
+            <img src="https://picsum.photos/300/200">
+        </div>
+        <div class="image-container">
+            <img src="https://picsum.photos/300/200">
+        </div>
+        <div class="image-container tall">
+            <img src="https://picsum.photos/300/200">
+        </div>
+        <div class="image-container">
+            <img src="https://picsum.photos/300/200">
+        </div>
+        <div class="image-container">
+            <img src="https://picsum.photos/300/200">
+        </div>
+        <div class="image-container tall">
+            <img src="https://picsum.photos/300/200">
+        </div>
+        <div class="image-container">
+            <img src="https://picsum.photos/300/200">
+        </div>
+        <div class="image-container">
+            <img src="https://picsum.photos/300/200">
+        </div>
+        <div class="image-container">
+            <img src="https://picsum.photos/300/200">
+        </div>
+        <div class="image-container">
+            <img src="https://picsum.photos/300/200">
+        </div>
+        <div class="image-container tall">
+            <img src="https://picsum.photos/300/200">
+        </div>
+        <div class="image-container tall">
+            <img src="https://picsum.photos/300/200">
+        </div>
+        <div class="image-container">
+            <img src="https://picsum.photos/300/200">
+        </div>
+        <div class="image-container">
+            <img src="https://picsum.photos/300/200">
+        </div>
+        <div class="image-container tall">
+            <img src="https://picsum.photos/300/200">
+        </div>
+        <div class="image-container tall">
+            <img src="https://picsum.photos/300/200">
+        </div>
+        <div class="grid-item">
+            <img src="https://picsum.photos/300/200">
+        </div>
+        <div class="image-container tall">
+            <img src="https://picsum.photos/300/200">
+        </div>
+        <div class="image-container tall">
+            <img src="https://picsum.photos/300/200">
+        </div>
+        <div class="image-container tall">
+            <img src="https://picsum.photos/300/200">
+        </div>
+        <div class="image-container">
+            <img src="https://picsum.photos/300/200">
+        </div>
+        <div class="image-container tall">
+            <img src="https://picsum.photos/300/200">
+        </div>
+        <div class="image-container">
+            <img src="https://picsum.photos/300/200">
+        </div>
+        <div class="image-container">
+            <img src="https://picsum.photos/300/200">
+        </div>
+        <div class="image-container">
+            <img src="https://picsum.photos/300/200">
         </div>
     </div>
 </div>
+
+
+<!-- Modal -->
+<div class="modal" id="imageModal">
+    <button class="modal-close" id="modalClose"><i class="fa fa-times" aria-hidden="true"></i></button>
+    <img id="modalImage" src="" alt="Full View">
+</div>
+
+<script>
+    // Select modal elements
+    const modal = document.getElementById('imageModal');
+    const modalImage = document.getElementById('modalImage');
+    const modalClose = document.getElementById('modalClose');
+    const images = document.querySelectorAll('.image-container img');
+
+    // Open modal on image click
+    images.forEach(image => {
+        image.addEventListener('click', () => {
+            modalImage.src = image.src;
+            modal.style.display = 'flex';
+        });
+    });
+
+    // Close modal on close button click
+    modalClose.addEventListener('click', () => {
+        modal.style.display = 'none';
+    });
+
+    // Close modal on outside click
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.style.display = 'none';
+        }
+    });
+</script>
