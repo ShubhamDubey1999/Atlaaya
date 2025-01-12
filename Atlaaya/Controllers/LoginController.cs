@@ -16,7 +16,7 @@ namespace Atlaaya.Controllers
 
 		public IActionResult Index()
 		{
-			return View();
+			return RedirectToAction("Index", "Home");
 		}
 		[HttpPost]
 		public async Task<IActionResult> Login(User user)
@@ -35,7 +35,7 @@ namespace Atlaaya.Controllers
 					var claims = new[]
 					{
 						new Claim(ClaimTypes.Name, isUser.Email),
-						new Claim(ClaimTypes.Role, isUser.Role) // Add roles or additional claims
+						new Claim(ClaimTypes.Role, isUser.Role)
 					};
 
 					var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);

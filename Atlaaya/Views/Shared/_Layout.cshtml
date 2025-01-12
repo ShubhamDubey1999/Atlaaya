@@ -215,16 +215,16 @@
 					<form id="RegisterForm">
 						<input type="text"
 							   class="form-control form-input mt-2 w-100"
-							   placeholder="Name" name="Username" required />
+							   placeholder="Name" id="RegUsername" name="Username" required />
 						<input type="email"
 							   class="form-control form-input mt-2 w-100"
-							   placeholder="Email" name="Email" required />
+							   placeholder="Email" id="RegEmail" name="Email" required />
 						<input type="password"
 							   class="form-control form-input mt-2 w-100"
-							   placeholder="Password" name="Password" required />
+							   placeholder="Password" id="RegPassword" name="Password" required />
 						<input type="password"
 							   class="form-control form-input mt-2 w-100"
-							   placeholder="Confirm Password" name="Password" required />
+							   placeholder="Confirm Password" id="RegCnfPassword" name="Password" required />
 						<div class="text-center p-5">
 							<button type="button" id="btnRegister" onclick="Register()" class="enquire-btn">Register</button>
 						</div>
@@ -232,6 +232,7 @@
 							If Already have an account! <a href="#!" onclick="closeRegister()" class="link-danger">Login</a>
 						</p>
 					</form>
+
 				</div>
 			</div>
 		</div>
@@ -334,6 +335,6 @@
 
 	<script src="~/js/login.js"></script>
 	@* DONT REMOVE THIS *@
-	<script id="messenger-widget-b" src="https://cdn.botpenguin.com/website-bot.js" defer>67815df7f8f04105fff3f4eb,67815dc5ce9cc99d97c8cf16</script>
+	@* <script id="messenger-widget-b" src="https://cdn.botpenguin.com/website-bot.js" defer>67815df7f8f04105fff3f4eb,67815dc5ce9cc99d97c8cf16</script> *@
 </body>
 </html>

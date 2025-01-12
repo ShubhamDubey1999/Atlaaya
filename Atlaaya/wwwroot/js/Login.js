@@ -15,18 +15,51 @@ function Login() {
     })
 }
 function Register() {
-    $.ajax({
-        url: "/Login/Register",
-        type: "POST",
-        async: true,
-        success: (resp) => {
-            toastr.success(resp);
-            location.reload();
-        },
-        error: (err) => {
-            toastr.error(err.responseText);
-        }
-    })
+    let isValid = true;
+    if (isNullOrFalsy($("#RegUsername").val())) {
+        isValid = false;
+        $("#RegUsername").css("border", "2px solid red");
+    } else {
+        $("#RegUsername").css("border", "");
+    }
+    if (isNullOrFalsy($("#RegEmail").val())) {
+        isValid = false;
+        $("#RegEmail").css("border", "2px solid red");
+    } else {
+        $("#RegEmail").css("border", "");
+    }
+    if (isNullOrFalsy($("#RegPassword").val())) {
+        isValid = false;
+        $("#RegPassword").css("border", "2px solid red");
+    } else {
+        $("#RegPassword").css("border", "");
+    }
+    if (isNullOrFalsy($("#RegCnfPassword").val())) {
+        isValid = false;
+        $("#RegCnfPassword").css("border", "2px solid red");
+    } else {
+        $("#RegCnfPassword").css("border", "");
+    }
+    if ($("#RegCnfPassword").val() != $("#RegPassword").val()) {
+        toastr.error("Password not match");
+        isValid = false;
+    }
+    if (isValid) {
+        let user = $("#RegisterForm").serializeObject();
+        $.ajax({
+            url: "/Login/Register",
+            type: "POST",
+            async: true,
+            data: user,
+            success: (resp) => {
+                toastr.success(resp);
+                location.reload();
+            },
+            error: (err) => {
+                toastr.error(err.responseText);
+            }
+        })
+    }
 }
 function EnquireNow() {
     let isValid = true;
@@ -62,6 +95,7 @@ function EnquireNow() {
             success: (resp) => {
                 if (resp) {
                     toastr.success("We will contact you soon!!!");
+                    $("#EnquireForm").modal('hide');
                 }
             },
             error: (err) => {
