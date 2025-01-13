@@ -75,41 +75,7 @@ hr{margin:7px 0!important;}
 .GallerWrap .image-container:hover img{transform:scale(1.1);filter:brightness(.9);}
 .GallerWrap .image-container.tall{grid-row:span 2;}
 
-/* Modal Styles */
-}
 
-.GallerWrap .modal {
-    display: none;
-    position: fixed;
-    top: 33%;
-    left: 30%;
-    width: 40%;
-    height: 50%;
-    background: rgba(0, 0, 0, 0.8);
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-}
-
-
-.GallerWrap .modal img {
-    max-width: 90%;
-    max-height: 90%;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-}
-
-
-.GallerWrap .modal-close {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    font-size: 30px;
-    color: white;
-    cursor: pointer;
-    background: transparent;
-    border: none;
-}
 
 
 
