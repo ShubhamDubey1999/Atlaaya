@@ -58,9 +58,21 @@ hr{margin:7px 0!important;}
 .carousel-caption{top:10px;left:10px;right:auto;bottom:auto;text-align:left;}
 
 .TestmnImage{border:1px solid #000;}
+.aboutWrap .aboutHead{margin-top:40px;}
+.aboutWrap .aboutHead .heading{text-align:center;margin-bottom:40px;}
+.aboutWrap .ourProcessMain{margin:48px;}
+.aboutWrap .featureIMG {margin-bottom:10px;margin-top:10px;}
+.aboutWrap .featureIMG img{height:200px;width:100%;}
 
 
-
+/* ------ Carrer-Section ------- */
+.carrerWrap .parallax-section{position:relative;height:800px;overflow:hidden;}
+.carrerWrap .parallax-image{position:absolute;top:0;left:0;width:100%;height:100%;background-size:cover;background-attachment:fixed;background-position:center;z-index:1;background-image:url('../assets/c.jpg');}
+.carrerWrap .parallax-content{position:relative;z-index:2;height:100%;display:flex;align-items:center;}
+.carrerWrap .parallax-text{color:#fff;padding:20px;border-radius:5px;}
+.carrerWrap #team-section .card{border:0;}
+.carrerWrap .career-view-btn{display:inline-block;padding:10px 20px;background-color:#2e2e2e;color:#fff;text-decoration:none;border-radius:0;border:1px solid #000;}
+.carrerWrap .career-view-btn:hover{text-decoration:none;color:#e0dddd;}
 
 
 /* ------ Gallery-Section ------- */
@@ -74,7 +86,11 @@ hr{margin:7px 0!important;}
 .GallerWrap .image-container img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .4s ease,filter .4s ease;}
 .GallerWrap .image-container:hover img{transform:scale(1.1);filter:brightness(.9);}
 .GallerWrap .image-container.tall{grid-row:span 2;}
-
+    /* Modal Styles */
+.galleryMain .modal {display: none;position: fixed;top: 33%;left: 30%;width: 40%;height: 50%;background: rgba(0, 0, 0, 0.8);justify-content: center;align-items: center;z-index: 1000;}
+.galleryMain .modal img {max-width: 90%;max-height: 90%;border-radius: 8px;box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);}
+.galleryMain .modal-close {position: absolute;top: 20px;right: 20px;font-size: 30px;color: white;cursor: pointer;
+    background: transparent;border: none;}
 
 
 
@@ -121,4 +137,14 @@ hr{margin:7px 0!important;}
 .backTOP{margin:10px auto;display:table;}
 .bannerWrap .scrollTXT{position:absolute;bottom:75px;left:100px;}
 .owl-theme .owl-nav, .owl-theme .owl-dots .owl-dot span{display:none;}
+.aboutWrap{overflow:hidden;}
+.aboutWrap .aboutHead {margin-top: 20px;}
+.aboutWrap .aboutHead .heading {margin-bottom:10px;}
+.aboutWrap .ourProcessMain {margin: 0;padding: 30px;}
+.aboutWrap .headingBH{text-align:center;}
+.aboutWrap .ourProcessMain .heading{text-align:center;}
+.carrerWrap{overflow:hidden;}
+.carrerWrap .display-4{font-size:30px;}
+.galleryMain .display-4{font-size:30px;}
+.galleryMain{overflow:hidden;}
  }
