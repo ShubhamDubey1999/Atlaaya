@@ -15,35 +15,54 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-6 image-side" id="imageSide">
-			<div class="image-container" id="imageContainer">
-				<img src="@Model.ProjectImage" alt="" />
+			<div class="image-container m-4" id="imageContainer">
+				<img src="@Model.ProjectImage" alt="" class="img-fluid" />
 			</div>
 		</div>
 		<!-- Form Side -->
-		<div class="col-md-6 form-side">
-			<h2 class="modal-title text-muted" id="">
+		<div class="col-md-6 p-4">
+			<h2 class="modal-title text-muted">
 				Add Project
 				<a type="button" class="btn btn-dark float-lg-right m-2" asp-controller="Projects" asp-action="Index">Back To Projects</a>
+				@if (Model.Id != 0)
+				{
+					<a type="button" title="Project Documents" class="btn btn-dark float-lg-right m-2" asp-controller="Projects" asp-action="ProjectDocuments" asp-route-ProjectId="@Model.Id"><span><i class="fa fa-file-text-o" aria-hidden="true"></i> @(Model.ProjectDocList?.Count() ?? 0)</span></a>
+					<a type="button" title="Project Images" class="btn btn-dark float-lg-right m-2" asp-controller="Projects" asp-action="ProjectImages" asp-route-ProjectId="@Model.Id"><span> <i class="fa fa-picture-o" aria-hidden="true"></i> @(Model.ProjectImagesList?.Count() ?? 0)</span></a>
+				}
 			</h2>
 			<form method="post" asp-controller="Projects" asp-action="Create" enctype="multipart/form-data">
-				<input type="text"
-					   class="form-control form-input mt-2 w-100"
-					   placeholder="Project Name" asp-for="ProjectName" />
-				<input type="text"
-					   class="form-control form-input mt-2 w-100"
-					   placeholder="Value1" asp-for="Value1" />
-				<input type="text"
-					   class="form-control form-input mt-2 w-100"
-					   placeholder="Project Type" asp-for="ProjectType" />
-				<input type="text"
-					   class="form-control form-input mt-2 w-100"
-					   placeholder="Area" asp-for="Area" />
-				<input type="text"
-					   class="form-control form-input mt-2 w-100"
-					   placeholder="Location" asp-for="Location" />
-				<input type="file"
-					   class="form-control form-input mt-2 w-100"
-					   placeholder="Choose File" id="fileInput" asp-for=ProjectImageFile onchange="displayImage(event)" />
+				<input type="text" class="form-control form-input mt-2 w-100" placeholder="Project Name" asp-for="ProjectName" />
+				<div class="row">
+					<div class="col-sm-6 col-md-6">
+						<input type="text" class="form-control form-input mt-2 w-100" placeholder="Value1" asp-for="Value1" />
+					</div>
+					<div class="col-sm-6 col-md-6">
+						<input type="text" class="form-control form-input mt-2 w-100" placeholder="Project Type" asp-for="ProjectType" />
+					</div>
+					<div class="col-sm-6 col-md-6">
+						<input type="text" class="form-control form-input mt-2 w-100" placeholder="Area" asp-for="Area" />
+					</div>
+					<div class="col-sm-6 col-md-6">
+						<input type="text" class="form-control form-input mt-2 w-100" placeholder="Location" asp-for="Location" />
+					</div>
+				</div>
+				<div class="form-group mt-3">
+					<textarea class="form-control" id="projectDescription" rows="4" asp-for=Description placeholder="Project Description"></textarea>
+				</div>
+				<div class="row mt-3">
+					<div class="col-sm-6 col-md-4 mt-3"><label>Project Thumbnail : </label></div>
+					<div class="col-sm-6 col-md-8">
+						<input type="file" class="form-control form-input mt-2 w-100" placeholder="Choose File" id="fileInput" asp-for="ProjectImageFile" onchange="displayImage(event)" accept=".jpg, .jpeg, .png" />
+					</div>
+					<div class="col-sm-6 col-md-4 mt-3"><label>Project Images :</label></div>
+					<div class="col-sm-6 col-md-8">
+						<input type="file" name="ProjectImagesFiles" class="form-control form-input mt-2 w-100" placeholder="Choose Project Images" multiple accept=".jpg, .jpeg, .png" />
+					</div>
+					<div class="col-sm-6 col-md-4 mt-3"><label>Project Files : </label></div>
+					<div class="col-sm-6 col-md-8">
+						<input type="file" name="ProjectDocFiles" class="form-control form-input mt-2 w-100" placeholder="Choose Project files" multiple />
+					</div>
+				</div>
 				<div class="text-center p-5">
 					<button class="enquire-btn">Submit</button>
 				</div>
@@ -51,16 +70,25 @@
 		</div>
 	</div>
 </div>
+
 <script>
+	// Display image before uploading
 	function displayImage(event) {
 		var file = event.target.files[0];
-
 		if (file) {
+			// Validate the file type (only jpg, png, jpeg)
+			var validExtensions = ['image/jpeg', 'image/png', 'image/jpg'];
+			if (!validExtensions.includes(file.type)) {
+				alert('Please upload a valid image (JPG, JPEG, PNG).');
+				event.target.value = ''; // Clear the input
+				return;
+			}
+
 			var imageUrl = URL.createObjectURL(file);
 			var img = document.createElement('img');
 			img.src = imageUrl;
 			img.alt = 'Selected Image';
-			img.name = ''
+			img.className = 'img-fluid';
 			var container = document.getElementById('imageContainer');
 			container.innerHTML = '';
 			container.appendChild(img);

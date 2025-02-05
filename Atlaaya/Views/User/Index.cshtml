@@ -1,0 +1,35 @@
+﻿@model IEnumerable<Atlaaya.Models.User>
+<div class="container-fluid">
+	<div class="container text-center mt-5">
+		<h1 class="display-4">
+			<span class="font-italic display-4" style="font-family: serif">Registered</span>
+			Users
+		</h1>
+	</div>
+	<button type="button" class="btn btn-info float-lg-right m-2" onclick="AdminCreateUser(0)">Add New</button>
+	<table id="myTable" class="table table-bordered table-hover">
+		<thead>
+			<tr>
+				<th scope="col" class="text-center">Id</th>
+				<th scope="col" class="text-center">Name</th>
+				<th scope="col" class="text-center">Role</th>
+				<th scope="col" class="text-center">Edit</th>
+				<th scope="col" class="text-center">Delete</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var item in Model)
+			{
+				<tr>
+					<th class="text-center" scope="row">@item.Id</th>
+					<td class="text-center">@item.Username</td>
+					<td class="text-center">@item.Role</td>
+					<td class="text-center"><a type="button" onclick="AdminCreateUser(@item.Id)" class="btn btn-secondary">Edit</a></td>
+					<td class="text-center"><a type="button" asp-controller="User" asp-action="Delete" asp-route-Id="@item.Id" class="btn btn-danger">Delete</a></td>
+				</tr>
+			}
+		</tbody>
+	</table>
+</div>
+<div id="createUserDiv"></div>
+<script src="~/js/users.js"></script>

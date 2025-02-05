@@ -1,0 +1,92 @@
+﻿@model Atlaaya.Models.Projects
+<style>
+	.gallery-img {
+		position: relative;
+		overflow: hidden;
+		border: 2px solid #ddd;
+		border-radius: 8px;
+		transition: transform 0.8s ease;
+	}
+
+		.gallery-img:hover {
+			transform: scale(1.05);
+			box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+		}
+
+		.gallery-img img {
+			width: 100%;
+			height: auto;
+			display: block;
+			border-radius: 8px;
+			transition: transform 0.8s ease;
+		}
+
+		.gallery-img:hover img {
+			transform: scale(1.1);
+		}
+
+	.img-title {
+		position: absolute;
+		bottom: 10px;
+		left: 50%;
+		transform: translateX(-50%);
+		color: white;
+		font-size: 18px;
+		background: rgba(0, 0, 0, 0.5);
+		padding: 5px 10px;
+		border-radius: 5px;
+	}
+
+	.container {
+		padding-top: 50px;
+	}
+
+	.row {
+		margin-bottom: 30px;
+	}
+</style>
+
+<div class="mt-3">
+	<h1 class="text-center text-muted">@Model.ProjectName</h1>
+	<hr class="border-bottom m-4 text-center" />
+	<h5 class="text-center">@Model.Value1</h5>
+
+	<div class="mt-5">
+		<img class="img-fluid" src="https://static.wixstatic.com/media/820b23_b8f121003e9e403ba343cf6e38726f5c~mv2.jpg/v1/fill/w_1886,h_882,fp_0.48_0.68,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Copy%20of%20DSC08612%20copy%202.jpg" />
+	</div>
+
+	<div class="text-center m-5">
+		<em style="font-size: xx-large;">@Model.Description</em>
+	</div>
+
+	<div class="text-center m-5">
+		<div class="row">
+			<div class="col-sm-2 col-md-2 col-lg-2"></div>
+			<div class="col-sm-2 col-md-2 col-lg-2"><i class="fa fa-calendar" aria-hidden="true"></i> @DateTime.Now.Year</div>
+			<div class="col-sm-2 col-md-2 col-lg-2"><i class="fa fa-square-o" aria-hidden="true"></i> @Model.Area sqft</div>
+			<div class="col-sm-2 col-md-2 col-lg-2"><i class="fa fa-home" aria-hidden="true"></i> @Model.ProjectType</div>
+			<div class="col-sm-2 col-md-2 col-lg-2"><i class="fa fa-map-marker" aria-hidden="true"></i> @Model.Location</div>
+			<div class="col-sm-2 col-md-2 col-lg-2"></div>
+		</div>
+	</div>
+	@if (Model?.ProjectImagesList?.Count > 0)
+	{
+		<div class="container my-4">
+			<div class="row">
+				@foreach (var item in Model.ProjectImagesList)
+				{
+					<div class="col-md-4 mb-4">
+						<div class="gallery-img">
+							<img src="@item.ProjectImagePath" alt="Size 1" class="img-fluid">
+							@* <div class="img-title">Size 1 - 601x962</div> *@
+						</div>
+					</div>
+				}
+			</div>
+		</div>
+	}
+
+	<!-- Bootstrap JS (optional, for interactivity) -->
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

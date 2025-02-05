@@ -3,6 +3,6 @@
 	public class TestimonialsProject
 	{
         public List<Projects> projects { get; set; }
-        public List<object> Testimonials { get; set; }
+        public List<Testimonial> Testimonials { get; set; }
     }
 }

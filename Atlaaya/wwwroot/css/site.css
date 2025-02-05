@@ -20,3 +20,14 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+/*PREVENT FROM PRINTING THE WEBPAGE*/
+/*@media print {
+    body {
+        display: none;
+    }
+}*/
+/*PREVENTS FROM SELECTION OF CONTENT*/
+/** {
+    user-select: none;*/ /* Prevents selection of text */
+/*}*/

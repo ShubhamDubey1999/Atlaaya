@@ -1,0 +1,189 @@
+﻿@model IEnumerable<Atlaaya.Models.Team>
+<style>
+	.image-placeholder {
+		width: 160px;
+		height: 227px;
+		background: url('https://placehold.co/160x227') center/cover no-repeat;
+		margin-top: 15px;
+		border-radius: 10px;
+		border: 2px dashed #ddd;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background-color: #f8f9fa;
+	}
+
+	.custom-file-input {
+		border-radius: 8px;
+	}
+</style>
+<div class="container-fluid">
+	<div class="container text-center mt-5">
+		<h1 class="display-4">
+			<span class="font-italic display-4" style="font-family: serif">Our</span>
+			Team
+		</h1>
+	</div>
+	<button type="button" class="btn btn-info float-lg-right m-2" onclick="AddTeamMember()">Add New</button>
+	<table id="myTable" class="table table-bordered table-hover">
+		<thead>
+			<tr>
+				<th scope="col" class="text-center">Id</th>
+				<th scope="col" class="text-center w-25">Image</th>
+				<th scope="col" class="text-center">Name</th>
+				<th scope="col" class="text-center">Designation</th>
+				<th scope="col" class="text-center">Edit</th>
+				<th scope="col" class="text-center">Delete</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var item in Model)
+			{
+				<tr>
+					<th class="text-center" scope="row">@item.Id</th>
+					<td class="text-center"><img src="@item.Image" class="w-50 h-50" /></td>
+					<td class="text-center">@item.Name</td>
+					<td class="text-center">@item.Designation</td>
+					<td class="text-center"><a type="button" onclick="AddTeamMember('@item.Id')" class="btn btn-secondary">Edit</a></td>
+					<td class="text-center"><a type="button" asp-controller="Team" asp-action="DeleteTeamMember" asp-route-Id="@item.Id" class="btn btn-danger">Delete</a></td>
+				</tr>
+			}
+		</tbody>
+	</table>
+</div>
+<div class="modal fade"
+	 id="CreateTeamCenter"
+	 tabindex="-1"
+	 role="dialog"
+	 aria-labelledby="CreateTeamCenterTitle"
+	 aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content container">
+			<div class="modal-header">
+				<h2 class="modal-title text-muted" id="CreateTeamCenterTitle">
+					Add Team Member
+				</h2>
+				<button type="button"
+						class="close"
+						data-dismiss="modal"
+						aria-label="Close">
+					<span style="font-size: larger" aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div class="card shadow-sm rounded-lg">
+					<div class="card-body p-4">
+						<form id="TeamMemberForm">
+							<input name="id" id="Id" hidden/>
+							<div class="mb-4 text-center">
+								<input type="file" class="form-control" id="image" name="image" accept="image/*" onchange="previewImage(event)">
+								<center>
+									<div id="image-preview" class="image-placeholder mt-3">
+										<img id="team-image-preview" src="" alt="Image preview" class="w-100 h-100" style="border-radius: 10px; object-fit: cover; display: none;" />
+									</div>
+								</center>
+							</div>
+							<div class="mb-3">
+								<input type="text" class="form-control" id="name" name="name" required placeholder="Enter team member's name">
+							</div>
+							<div class="mb-3">
+								<input type="text" class="form-control" id="designation" name="designation" required placeholder="Enter team member's designation">
+							</div>
+							<div class="text-center">
+								<button type="button" onclick="saveTeamMember()" class="enquire-btn">Add Member</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+	$(document).ready(function () {
+		$('#myTable').DataTable();
+	});
+	function AddTeamMember(id = 0) {
+		$.ajax({
+			url: '@Url.Action("AddTeamMember", "Team")',
+			type: 'GET',
+			data: { id: id },
+			success: function (data) {
+				console.log(data);
+				$("#name").val(data.name);
+				$("#designation").val(data.designation);
+				$("#Id").val(data.id);
+				const imagePreview = document.getElementById('image-preview');
+				const teamImagePreview = document.getElementById('team-image-preview');
+
+				// Check if there's an existing image URL
+				if (data.image) {
+					// Show the image in the preview
+					teamImagePreview.src = data.image;
+					teamImagePreview.style.display = 'block';  // Show the image
+					imagePreview.style.backgroundImage = 'none'; // Remove any background image
+				} else {
+					// If there's no image, hide the image element and use the placeholder
+					teamImagePreview.style.display = 'none';
+					imagePreview.style.backgroundImage = 'url("https://placehold.co/160x227")';
+					imagePreview.style.backgroundSize = 'cover';
+				}
+
+				// Force a reflow to ensure background image updates
+				imagePreview.offsetHeight; // Trigger a reflow
+
+				$('#CreateTeamCenter').modal('show');
+			}
+		});
+	}
+
+
+	// JavaScript function to save the team member (with image)
+	function saveTeamMember() {
+		const form = document.getElementById('TeamMemberForm');
+		const formData = new FormData(form);
+
+		// Append the image if one is selected
+		const imageInput = document.getElementById('image');
+		const imageFile = imageInput.files[0];
+		if (imageFile) {
+			formData.append('TeamMemberImage', imageFile);
+		}
+		$.ajax({
+			url: '@Url.Action("AddTeamMember", "Team")',
+			type: 'POST',
+			data: formData,
+			processData: false,
+			contentType: false,
+			success: function (response) {
+				toastr.success("Team member saved successfully!");
+				$('#CreateTeamCenter').modal('hide');
+				location.reload();
+			},
+			error: function () {
+				toastr.error("Error saving team member.");
+			}
+		});
+	}
+	// Function to preview image
+	function previewImage(event) {
+		const file = event.target.files[0];
+		const reader = new FileReader();
+		reader.onload = function () {
+			const imagePreview = document.getElementById('image-preview');
+			const teamImagePreview = document.getElementById('team-image-preview');
+
+			// Show the preview image
+			teamImagePreview.src = reader.result;
+			teamImagePreview.style.display = 'block';  // Show the image
+
+			// If you want to hide the background image, use:
+			imagePreview.style.backgroundImage = 'none';  // Remove any background image
+		}
+
+		if (file) {
+			reader.readAsDataURL(file);
+		}
+	}
+
+</script>

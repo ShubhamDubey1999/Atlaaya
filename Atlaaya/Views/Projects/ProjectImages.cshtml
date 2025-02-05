@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Atlaaya.Models.ProjectImagesMapping>
+<style>
+	/* Optionally control image aspect ratios */
+	.gallery-image {
+		object-fit: cover;
+		width: 100%;
+		height: auto;
+	}
+
+	/* Position the delete button */
+	.delete-btn {
+		position: absolute;
+		top: 10px;
+		right: 10px;
+		background-color: rgba(255, 255, 255, 0.7);
+		border: none;
+		border-radius: 50%;
+		padding: 5px;
+		cursor: pointer;
+		font-size: 18px;
+	}
+	.card {
+		position: relative;
+	}
+</style>
+<div class="container text-center">
+    <h1 class="display-4">
+        <span class="font-italic chalk-font display-4" style="font-family: serif;">@ViewBag.ProjectName</span>
+    </h1>
+
+	<div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4">
+		@foreach (var item in Model)
+		{
+			<div class="col">
+				<div class="card">
+					<button class="delete-btn" onclick="deleteImage(this)">
+						<i class="fa fa-trash-o" aria-hidden="true"></i>
+					</button>
+					<img src="@item.ProjectImagePath" class="card-img-top img-fluid gallery-image">
+				</div>
+			</div>
+		}
+	</div>
+</div>

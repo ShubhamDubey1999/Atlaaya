@@ -6,21 +6,19 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>Atlaaya Studio</title>
 	<link rel="stylesheet" href="~/css/custom.css" />
-	<link rel="stylesheet" href="~/css/site.css"  />
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet"  />
-	<link rel="icon" type="image/x-icon" href="~/assets/logo.jpg"  />
-	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"  />
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"  />
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js" ></script>
+	<link rel="stylesheet" href="~/css/site.css" />
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
+	<link rel="icon" type="image/x-icon" href="~/assets/logo.jpg" />
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 	<!-- Owl Carousel CSS -->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" >
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" >
-	<link rel="stylesheet" href="~/css/style.css"  />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+	<link rel="stylesheet" href="~/css/style.css" />
 	@* <link rel="stylesheet" href="https://cdn.datatables.net/2.2.1/css/dataTables.dataTables.css"/> *@
 	<link href="https://cdn.datatables.net/v/dt/jszip-3.10.1/dt-2.2.1/b-3.2.0/b-html5-3.2.0/fh-4.0.1/datatables.min.css" rel="stylesheet">
-
-	
-	<link href="~/css/toastr.css" rel="stylesheet"  />
+	<link href="~/css/toastr.css" rel="stylesheet" />
 </head>
 <body>
 	<nav class="sticky-top navbar navbar-expand-lg navbar-light bg-light">
@@ -40,17 +38,31 @@
 				{
 					<li class="nav-item p-2 nav-fs dropdown">
 						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							Admin
+							Hi @context?.HttpContext?.Session.GetString("UserName")
 						</a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 							<a class="dropdown-item" asp-controller="Projects" asp-action="Index">Projects</a>
-							<a class="dropdown-item" href="#">Testimonials</a>
-							<a class="dropdown-item" href="#">Team</a>
-							<a class="dropdown-item" href="#">Career</a>
-							<a class="dropdown-item" href="#">Blogs</a>
-							<a class="dropdown-item" href="#">Users</a>
+							<a class="dropdown-item" onclick="AddTestimonial()" style="cursor:pointer;">Testimonials</a>
+							<a class="dropdown-item" asp-controller="Team" asp-action="Index">Team</a>
+							<a class="dropdown-item" asp-controller="Careers" asp-action="Index">Career</a>
+							<a class="dropdown-item" asp-controller="Blog" asp-action="Index">Blogs</a>
+							<a class="dropdown-item" asp-controller="User" asp-action="Index">Users</a>
 							<a class="dropdown-item" asp-controller="Projects" asp-action="Enquiries">Enquiries</a>
 							<div class="dropdown-divider"></div>
+						</div>
+					</li>
+				}
+				else if (context?.HttpContext?.Session.GetString("Role") == "Customer")
+				{
+					<li class="nav-item p-2 nav-fs dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							Hi @context?.HttpContext?.Session.GetString("UserName")
+						</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" asp-controller="Projects" asp-action="Index">Files</a>
+							<a class="dropdown-item" onclick="AddTestimonial()" style="cursor:pointer;">Testimonial</a>
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item" asp-controller="User" asp-action="Index">Profile</a>
 						</div>
 					</li>
 				}
@@ -152,8 +164,6 @@
 			</div>
 		</div>
 	</div>
-
-
 	<div class="modal fade"
 		 id="LoginModalCenter"
 		 tabindex="-1"
@@ -237,78 +247,94 @@
 			</div>
 		</div>
 	</div>
-
-	<footer class="footerWrap">
-		<div class="col-md-12 text-white p-4">
+	<div id="TestimonialModal"></div>
+	<!-- Footer Section -->
+	<footer class="footer">
+		<div class="container">
 			<div class="row">
-				<div class="col-md-4 col-sm-12 col-12 order3">
-					<p class="heading"> ©2025 Chalk Studio Interiors. Website Designed by HINTT</p>
-				</div>
-				<div class="col-md-6 col-sm-12 col-12 order2">
-					<div class="socailWrap text-center">
-						<a href="#" class="text-white">
-							<i style="font-size: x-large" class="fa fa-envelope-o" aria-hidden="true"></i>
-						</a>
-						<a href="#" class="text-white">
-							<i style="font-size: x-large" class="fa fa-linkedin-square" aria-hidden="true"></i>
-						</a>
-						<a href="#" class="text-white">
-							<i style="font-size: x-large" class="fa fa-instagram" aria-hidden="true"></i>
-						</a>
-						<a href="#" class="text-white">
-							<i style="font-size: x-large" class="fa fa-facebook-square" aria-hidden="true"></i>
-						</a>
-						<a href="#" class="text-white">
-							<i style="font-size: x-large" class="fa fa-whatsapp" aria-hidden="true"></i>
-						</a>
-						<a href="#" class="text-white">
-							<i style="font-size: x-large" class="fa fa-map-marker" aria-hidden="true"></i>
-						</a>
-					</div>
-					<div class="text-center callnoBH">
-						<a class="">Call Us- 09599197669</a>
-					</div>
+				<!-- About Us Section -->
+				<div class="col-md-3">
+					<h5>About Us</h5>
+					<p>Transforming spaces with beautiful and functional interior designs tailored to your needs.</p>
 				</div>
 
+				<!-- Quick Links Section -->
+				<div class="col-md-3">
+					<h5>Quick Links</h5>
+					<ul class="list-unstyled">
+						<li><a asp-controller="Home" asp-action="Index">Home</a></li>
+						<li><a asp-controller="Home" asp-action="Projects">Projects</a></li>
+						<li><a asp-controller="Blogs" asp-action="Index">Blog</a></li>
+						<li><a href="#">Contact</a></li>
+					</ul>
+				</div>
 
-				<div class="col-md-2 col-sm-12 col-12 order1">
-					<p class="backTOP">
+				<!-- Services Section -->
+				<div class="col-md-3 services">
+					<h5>Our Services</h5>
+					<ul>
+						<li><a href="#">Residential Design</a></li>
+						<li><a href="#">Commercial Design</a></li>
+						<li><a href="#">3D Visualization</a></li>
+						<li><a href="#">Project Management</a></li>
+					</ul>
+				</div>
 
-						<a class="text-white float-right"
-						   href="#"
-						   id="back-to-top">Back To Top</a>
+				<!-- Contact Info Section -->
+				<div class="col-md-3">
+					<h5>Contact Us</h5>
+					<p><i class="fa fa-map-marker" aria-hidden="true"></i> 123 Interior St, City, Country</p>
+					<p><i class="fa fa-phone" aria-hidden="true"></i> +1 (123) 456-7890</p>
+					<p><i class="fa fa-envelope-o" aria-hidden="true"></i> info@interiordesign.com</p>
 
-					</p>
+					<!-- Social Media Links -->
+					<div class="social-icons">
+						<a href="#" class="text-white"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+						<a href="#" class="text-white"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+						<a href="#" class="text-white"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+						<a href="#" class="text-white"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a>
+						<a href="#" class="text-white"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+					</div>
 				</div>
 			</div>
 
+			<!-- Copyright Section -->
+			<div class="copyright">
+				<p>&copy; 2025 Interior Design Studio. All Rights Reserved.</p>
+			</div>
 		</div>
 	</footer>
+	<!-- Back to Top Button -->
+	<button class="back-to-top" id="backToTopBtn"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
 
-	<script src="~/js/site.js" ></script>
+	<script src="~/js/site.js"></script>
 	@await RenderSectionAsync("Scripts", required: false)
-	@* <script src="https://code.jquery.com/jquery-3.6.0.min.js" ></script> *@
-	<script src="https://cdn.jsdelivr.net/npm/@@popperjs/core@2.5.4/dist/umd/popper.min.js" ></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" ></script>
-	@* <script src="https://cdn.datatables.net/2.2.1/js/dataTables.js"></script> *@
+	<script src="https://cdn.jsdelivr.net/npm/@@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
 	<script src="https://cdn.datatables.net/v/dt/jszip-3.10.1/dt-2.2.1/b-3.2.0/b-html5-3.2.0/fh-4.0.1/datatables.min.js"></script>
-	@* <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js" ></script> *@
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" ></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 	<!-- Owl Carousel JS -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" ></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery.serializeObject/2.0.3/jquery.serializeObject.min.js" integrity="sha512-DNziaT2gAUenXiDHdhNj6bfk1Ivv72gpxOeMT+kFKXB2xG/ZRtGhW2lDJI9a+ZNCOas/rp4XAnvnjtGeMHRNyg==" crossorigin="anonymous" referrerpolicy="no-referrer" ></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery.serializeObject/2.0.3/jquery.serializeObject.min.js" integrity="sha512-DNziaT2gAUenXiDHdhNj6bfk1Ivv72gpxOeMT+kFKXB2xG/ZRtGhW2lDJI9a+ZNCOas/rp4XAnvnjtGeMHRNyg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 	<script>
-		$("#back-to-top").click(function () {
-			$("body,html").animate(
-				{
-					scrollTop: 0,
-				},
-				400
-			);
-			return false;
-		});
+		// Back to Top Button Functionality
+		const backToTopBtn = document.getElementById("backToTopBtn");
+
+		// Show the button when the user scrolls down
+		window.onscroll = function () {
+			if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+				backToTopBtn.style.display = "block";
+			} else {
+				backToTopBtn.style.display = "none";
+			}
+		};
+
+		// Scroll to top when the button is clicked
+		backToTopBtn.onclick = function () {
+			window.scrollTo({ top: 0, behavior: "smooth" });
+		};
 	</script>
 	<script>
 		$(document).ready(function () {
@@ -324,7 +350,7 @@
 					600: { items: 2 },
 					1000: { items: 4 }
 				}
-			});			
+			});
 		});
 	</script>
 	<script>

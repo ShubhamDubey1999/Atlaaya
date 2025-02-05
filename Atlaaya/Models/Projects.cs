@@ -13,7 +13,16 @@ namespace Atlaaya.Models
         public string ProjectType { get; set; }
         public string Area { get; set; }
         public string Location { get; set; }
+        public string Description { get; set; }
         [NotMapped]
-        public IFormFile ProjectImageFile { get; set; }
+        public IFormFile? ProjectImageFile { get; set; }
+		[NotMapped]
+		public IEnumerable<IFormFile>? ProjectImagesFiles { get; set; }
+		[NotMapped]
+		public IEnumerable<IFormFile>? ProjectDocFiles { get; set; }
+        [NotMapped]
+        public List<ProjectImagesMapping>? ProjectImagesList { get; set; }
+        [NotMapped]
+        public List<ProjectDocMapping>? ProjectDocList { get; set; }
     }
 }

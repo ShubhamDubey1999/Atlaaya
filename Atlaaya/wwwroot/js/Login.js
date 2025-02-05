@@ -141,3 +141,38 @@ $(document).ready(function () {
 function isNullOrFalsy(value) {
     return !value;
 }
+function GetProjectDetails(Id) {
+    location.href = "../Home/ProjectDetail?ProjectId=" + Id;
+}
+function AddTestimonial() {
+    $.ajax({
+        url: "../Testimonials/AddTestimonial",
+        type: "get",
+        async: true,
+        success: (resp) => {
+            $("#TestimonialModal").html(`
+                <div class="modal fade" 
+                    id="TestimonialModalCenter" 
+                    tabindex="-1" 
+                    role="dialog" 
+                    aria-labelledby="TestimonialModalCenterTitle" 
+                    aria-hidden="true">                    
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content container">
+                            ${resp}
+                        </div>
+                    </div>
+                </div>
+            `);
+            $("#TestimonialModalCenter").modal('show');
+        },
+        error: (err) => {
+            toastr.error(err.responseText);
+        }
+    });
+}
+
+function SubmitTestimonial() {
+    let isValid = true;
+
+}

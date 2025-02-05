@@ -30,6 +30,7 @@ namespace Atlaaya.Controllers
 				if (isUser is not null)
 				{
 					HttpContext.Session.SetInt32("UserId", isUser.Id);
+					HttpContext.Session.SetString("UserName", isUser.Username);
 					HttpContext.Session.SetString("Role", isUser.Role);
 					var claims = new[]
 					{

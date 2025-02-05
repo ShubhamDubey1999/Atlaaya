@@ -1,3 +1,4 @@
+using Atlaaya.HelperMethods;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -19,22 +20,26 @@ namespace Atlaaya.Controllers
 			testimonialsProject.projects = _db.Projects.ToList();
 			testimonialsProject.projects?.ForEach(x =>
 			{
-				var imagePath = Path.Combine("Projects", x.ProjectImage);
+				var imagePath = Path.Combine(x.ProjectImage);
 				if (System.IO.File.Exists(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", imagePath)))
 				{
-					x.ProjectImage = "/" + imagePath;
+					x.ProjectImage = ImageHelper.GetProjectImagePath(imagePath);
 				}
 				else
 				{
 					x.ProjectImage = "https://placehold.co/500x500";
 				}
 			});
-			//testimonialsProject.Testimonials = _db.Testimonials.ToList();
 			return View(testimonialsProject);
 		}
 		public IActionResult About()
 		{
-			return View();
+			AboutDTO testimonialDTO = new()
+			{
+				Teams = [.. _db.Team]
+			};
+			testimonialDTO?.Teams?.ForEach(x => { x.Image = ImageHelper.GetProjectImagePath(x.Image); });
+			return View(testimonialDTO);
 		}
 		public IActionResult Projects()
 		{
@@ -42,10 +47,10 @@ namespace Atlaaya.Controllers
 			testimonialsProject.projects = _db.Projects.ToList();
 			testimonialsProject.projects?.ForEach(x =>
 			{
-				var imagePath = Path.Combine("Projects", x.ProjectImage);
+				var imagePath = Path.Combine(x.ProjectImage);
 				if (System.IO.File.Exists(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", imagePath)))
 				{
-					x.ProjectImage = "/" + imagePath;
+					x.ProjectImage = ImageHelper.GetProjectImagePath(imagePath);
 				}
 				else
 				{
@@ -53,6 +58,22 @@ namespace Atlaaya.Controllers
 				}
 			});
 			return View(testimonialsProject);
+		}
+		[HttpGet]
+		public IActionResult ProjectDetail(int ProjectId)
+		{
+			var project = _db.Projects.FirstOrDefault(x => x.Id == ProjectId);
+			if (project is null)
+			{
+				return RedirectToAction(nameof(Index));
+			}
+			var projectImages = _db.ProjectImagesMapping.Where(x => x.ProjectId == ProjectId).ToList();
+			project.ProjectImagesList = (from s in projectImages
+										 select new ProjectImagesMapping
+										 {
+											 ProjectImagePath = ImageHelper.GetProjectImagePath(s.ProjectImagePath)
+										 }).ToList();
+			return View(project);
 		}
 		public IActionResult Careers()
 		{

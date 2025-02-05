@@ -17,7 +17,7 @@
 	<hr />
 	<div class="row mt-2 ourProjectMain">
 		<div class="col-md-3"></div>
-		<div class="col-md-6">
+		<div class="col-md-6 projBtns">
 			<button class="btn m-2 pl-5 pr-5 nav-fs">Commercial</button>
 			<button class="btn m-2 pl-5 pr-5 nav-fs">Hospitality</button>
 			<button class="btn m-2 pl-5 pr-5 nav-fs">Residential</button>
@@ -28,8 +28,8 @@
 		<div class="row">
 			@foreach (var item in Model.projects)
 			{
-				<div class="col-md-4 mb-4">
-					<div class="fwrap">
+				<div class="col-md-4 mb-4 project" data-category="@item.ProjectType">
+					<div class="fwrap" onclick="GetProjectDetails('@item.Id')" style="cursor:pointer;">
 						<img class="fimg" src="@item.ProjectImage" />
 						<div class="fcap">
 							<div class="m-4 workTXT">
@@ -48,6 +48,8 @@
 					</div>
 				</div>
 			}
+
 		</div>
 	</div>
 </div>
+<script src="~/js/projectfilter.js"></script>

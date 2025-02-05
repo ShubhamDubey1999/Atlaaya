@@ -7,9 +7,20 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\js\Users.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="wwwroot\js\Users.js" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Data\" />
     <Folder Include="wwwroot\Testimonials\" />
-    <Folder Include="wwwroot\Projects\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\js\Users.js" />
   </ItemGroup>
 
   <ItemGroup>
