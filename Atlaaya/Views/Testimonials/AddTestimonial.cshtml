@@ -1,5 +1,4 @@
-﻿@model Atlaaya.Models.Testimonial
-<style>
+﻿<style>
 	.testimonial-form-container {
 		background-color: #ffffff;
 		box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -9,17 +8,17 @@
 		margin: 0 auto;
 	}
 
-		.testimonial-form-container h2 {
-			color: #333;
-			font-weight: bold;
-			margin-bottom: 20px;
-		}
+	.testimonial-form-container h2 {
+		color: #333;
+		font-weight: bold;
+		margin-bottom: 20px;
+	}
 
-		.testimonial-form-container p {
-			font-size: 16px;
-			color: #666;
-			margin-bottom: 30px;
-		}
+	.testimonial-form-container p {
+		font-size: 16px;
+		color: #666;
+		margin-bottom: 30px;
+	}
 
 	.form-control {
 		border-radius: 8px;
@@ -35,38 +34,102 @@
 		font-size: 16px;
 		color: #555;
 	}
+
+	.error-message {
+		color: red;
+		font-size: 12px;
+		display: none;
+	}
 </style>
+
 <div class="testimonial-form-container">
+	<button type="button"
+			class="close"
+			data-dismiss="modal"
+			aria-label="Close">
+		<span style="font-size: larger" aria-hidden="true">&times;</span>
+	</button>
 	<h2 class="text-center">We'd Love Your Feedback!</h2>
 	<p class="text-center">Share your thoughts on how our interior design services transformed your space.</p>
 	<form id="TestimonialForm">
 		<div class="form-group">
 			<label for="name">Your Name</label>
-			<input type="text" class="form-control" id="UserName" placeholder="Enter your name" required>
+			<input type="text" class="form-control" id="UserName" name="UserName" placeholder="Enter your name" required>
+			<div class="error-message" id="nameError">Please enter your name.</div>
 		</div>
 
 		<div class="form-group">
 			<label for="email">Your Email</label>
 			<input type="email" class="form-control" name="Email" id="email" placeholder="Enter your email" required>
+			<div class="error-message" id="emailError">Please enter a valid email address.</div>
 		</div>
 
 		<div class="form-group">
 			<label for="testimonial">Your Testimonial</label>
 			<textarea class="form-control" name="InteriorReview" id="testimonial" rows="4" placeholder="Share your experience with us!" required></textarea>
+			<div class="error-message" id="testimonialError">Please enter your testimonial.</div>
 		</div>
 
-		@* <div class="form-group">
-			<label class="rating-label" for="rating">Rating (1 to 5)</label>
-			<select class="form-control" id="rating" required>
-				<option value="1">1</option>
-				<option value="2">2</option>
-				<option value="3">3</option>
-				<option value="4">4</option>
-				<option value="5">5</option>
-			</select>
-		</div> *@
 		<div class="text-center mt-3">
 			<button type="button" onclick="SubmitTestimonials()" class="enquire-btn BTNB">Submit</button>
 		</div>
 	</form>
 </div>
+
+<script>
+	function validateForm() {
+		let isValid = true;
+
+		// Validate Name
+		const name = $("#UserName").val();
+		if (name.trim() === "") {
+			$("#nameError").show();
+			isValid = false;
+		} else {
+			$("#nameError").hide();
+		}
+
+		// Validate Email
+		const email = $("#email").val();
+		const emailPattern = /^[a-zA-Z0-9._-]+@@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+		if (!emailPattern.test(email)) {
+			$("#emailError").show();
+			isValid = false;
+		} else {
+			$("#emailError").hide();
+		}
+
+		// Validate Testimonial
+		const testimonial = $("#testimonial").val();
+		if (testimonial.trim() === "") {
+			$("#testimonialError").show();
+			isValid = false;
+		} else {
+			$("#testimonialError").hide();
+		}
+
+		return isValid;
+	}
+
+	function SubmitTestimonials() {
+		// First, validate the form before submitting
+		if (!validateForm()) {
+			return;
+		}
+
+		$.ajax({
+			url: "Testimonials/AddTestimonial",
+			type: "post",
+			async: true,
+			data: {
+				testimonial: $("#TestimonialForm").serializeObject()
+			},
+			success: (resp) => {
+				alert("Thanks for your feedback!");
+			},
+			error: (err) => {
+				alert("There was an error submitting your testimonial. Please try again.");
+			}
+		})
+	}
+</script>

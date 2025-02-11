@@ -26,7 +26,10 @@
 //        const heightThreshold = window.outerHeight - window.innerHeight > 100;
 //        if (widthThreshold || heightThreshold) {
 //            // Developer tools are open
-//            location.href = "/DontTry";
+//            //location.href = "/DontTry";
+//            //while (true) {
+//            //    debugger;
+//            //}
 //        }
 //    }, 10);
 //    window.onbeforeunload = function () {

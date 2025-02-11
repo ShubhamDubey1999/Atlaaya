@@ -42,10 +42,10 @@
 						</a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 							<a class="dropdown-item" asp-controller="Projects" asp-action="Index">Projects</a>
-							<a class="dropdown-item" onclick="AddTestimonial()" style="cursor:pointer;">Testimonials</a>
+							<a class="dropdown-item" asp-controller="Testimonials" asp-action="Index">Testimonials</a>
 							<a class="dropdown-item" asp-controller="Team" asp-action="Index">Team</a>
 							<a class="dropdown-item" asp-controller="Careers" asp-action="Index">Career</a>
-							<a class="dropdown-item" asp-controller="Blog" asp-action="Index">Blogs</a>
+							<a class="dropdown-item" target="_blank" asp-controller="Blogs" asp-action="Index">Blogs</a>
 							<a class="dropdown-item" asp-controller="User" asp-action="Index">Users</a>
 							<a class="dropdown-item" asp-controller="Projects" asp-action="Enquiries">Enquiries</a>
 							<div class="dropdown-divider"></div>
@@ -78,11 +78,11 @@
 				<li class="nav-item p-2">
 					<a class="nav-link nav-fs" asp-controller="Home" asp-action="Careers">Careers</a>
 				</li>
-				<li class="nav-item p-2">
+				@* <li class="nav-item p-2">
 					<a class="nav-link nav-fs" asp-controller="Home" asp-action="Gallery">Gallery</a>
-				</li>
+				</li> *@
 				<li class="nav-item p-2">
-					<a class="nav-link nav-fs" href="./blogs.html">Blogs</a>
+					<a class="nav-link nav-fs" target="_blank" asp-controller="Blogs" asp-action="Index">Blogs</a>
 				</li>
 
 				@if (context?.HttpContext?.Session.GetString("Role") == null)

@@ -1,0 +1,105 @@
+﻿<style>
+	.nav-link {
+		color: black !important;
+	}
+
+		.nav-link:hover {
+			color: #333;
+		}
+
+	.dropdown-menu .dropdown-item {
+		color: black;
+	}
+
+		.dropdown-menu .dropdown-item:hover {
+			color: #333;
+		}
+</style>
+<div class="">
+	<div class="container text-center mt-5">
+		<h1 class="display-4">
+			<span class="font-italic display-4" style="font-family: serif">The</span>
+			Blog
+		</h1>
+	</div>
+	<div class="col-12 text-lg-right">
+		<a class="enquire-nav-btn" asp-controller="Blogs" asp-action="CreateBlog">Add New Blog</a>
+	</div>
+	<div class="container-fluid mt-5" style="background-color: #e8e8e8;">
+		<div class="col-12">
+			<div class="row">
+				<div class="col-sm-6 col-md-6 col-lg-6 mb-4 text-center mt-4" style="position: relative; height: 510px;">
+					<img src="https://static.wixstatic.com/media/bf8702_fdead0e70d7a4fedb8934b5f242eac7a~mv2.webp/v1/fill/w_510,h_510,al_c,q_90,enc_auto/bf8702_fdead0e70d7a4fedb8934b5f242eac7a~mv2.webp" class="img-fluid" style="width: 100%; height: 100%; object-fit: cover;" />
+
+					<!-- Text Overlay Section -->
+					<div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 80%; color: white; text-align: left; padding: 20px; background-color: rgba(0, 0, 0, 0.15);">
+						<h1>How Different Is A Formal Living Room And An Informal Living Room? The Design Basics!</h1>
+						<p>What truly distinguishes a formal setup from an informal family room? </p>
+						<a href="#" class="btn btn-light">Read Now</a>
+					</div>
+				</div>
+
+
+				<div class="col-sm-6 col-md-6 col-lg-6 mb-4 mt-3">
+					<div class="row">
+						<ul class="nav ml-3">
+							<li class="nav-item">
+								<a class="nav-link active" href="#">All Blogs</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">Living Room</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">Dining</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">Bedroom</a>
+							</li>
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown">
+									More
+								</a>
+								<ul class="dropdown-menu" aria-labelledby="navbarDropdown1">
+									<li><a class="dropdown-item" href="#">Blog 1</a></li>
+									<li><a class="dropdown-item" href="#">Blog 2</a></li>
+									<li><a class="dropdown-item" href="#">Blog 3</a></li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+
+					<div class="row mt-5">
+						@for (int i = 0; i < 6; i++)
+						{
+							<div class="col-sm-6 col-md-6 col-lg-6 mb-4">
+								<div class="card" style="border: none; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+									<img src="https://static.wixstatic.com/media/bf8702_77c2501f818c45cdb89e977507d57d69~mv2.webp/v1/fill/w_511,h_511,al_c,q_90,enc_auto/bf8702_77c2501f818c45cdb89e977507d57d69~mv2.webp" class="card-img-top" alt="Topic Image">
+
+									<div class="card-body">
+										<div class="d-flex align-items-center mb-4">
+											<div class="bg-primary text-white rounded-circle d-flex justify-content-center align-items-center" style="width: 35px; height: 35px; font-size: 16px; font-weight: bold;">
+												A
+											</div>
+											<h6 class="card-subtitle mb-0 ml-2 text-muted" style="font-size: 14px;">Admin</h6>
+											<button class="btn btn-outline-primary ml-5">
+												<i class="fa fa-edit"></i>
+											</button>
+											<button class="btn btn-outline-danger ml-2">
+												<i class="fa fa-trash"></i>
+											</button>
+										</div>
+
+										<h6 class="card-title text-uppercase mb-3" style="font-weight: 600; letter-spacing: 1px;">Interior Design</h6>
+
+										<h5 class="card-text mb-2" style="font-weight: 500;">Transform Spaces with Expert Interior...</h5>
+										<p class="card-text text-muted" style="font-size: 14px; line-height: 1.6;">Most of your life revolves around your home, and your home should be your sanctuary. Interior design helps create beautiful, functional spaces that inspire.</p>
+									</div>
+								</div>
+							</div>
+						}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

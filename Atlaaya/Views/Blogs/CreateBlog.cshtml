@@ -1,0 +1,159 @@
+﻿<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/5.10.2/tinymce.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        .form-container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            font-weight: 700;
+            margin-bottom: 30px;
+            text-align: center;
+            color: #4e73df;
+        }
+
+        .form-group label {
+            font-weight: 500;
+        }
+
+        .btn-block {
+            padding: 12px;
+            font-size: 16px;
+            font-weight: 500;
+            border-radius: 5px;
+        }
+
+        .btn-primary {
+            background-color: #4e73df;
+            border-color: #4e73df;
+        }
+
+            .btn-primary:hover {
+                background-color: #2e59d9;
+                border-color: #2e59d9;
+            }
+
+        .form-control-file {
+            border-radius: 5px;
+        }
+
+        .form-control {
+            border-radius: 5px;
+        }
+
+        .footer-text {
+            text-align: center;
+            margin-top: 20px;
+            color: #777;
+        }
+
+        /* Style for image preview */
+        #imagePreview {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="form-container">
+            <h2>Add Your Blog</h2>
+            <form action="#" method="post" enctype="multipart/form-data">
+                <!-- Image Preview -->
+                <div class="form-group">
+                    <img id="imagePreview" src="https://placehold.co/600x400" alt="Image Preview">
+                </div>
+
+                <!-- Blog Title -->
+                <div class="form-group">
+                    <label for="blogTitle">Blog Title</label>
+                    <input type="text" class="form-control" id="blogTitle" name="title" placeholder="Enter blog title" required>
+                </div>
+
+                <!-- Blog Content (TinyMCE Editor) -->
+                <div class="form-group">
+                    <label for="blogContent">Content</label>
+                    <textarea class="form-control" id="blogContent" name="content" rows="6" placeholder="Write your blog content here" required></textarea>
+                </div>
+
+                <!-- Blog Category -->
+                <div class="form-group">
+                    <label for="blogCategory">Category</label>
+                    <select class="form-control" id="blogCategory" name="category" required>
+                        <option value="">Select Category</option>
+                        <option value="Tech">Tech</option>
+                        <option value="Lifestyle">Lifestyle</option>
+                        <option value="Business">Business</option>
+                        <option value="Travel">Travel</option>
+                    </select>
+                </div>
+
+                <!-- Blog Image -->
+                <div class="form-group">
+                    <label for="blogImage">Upload Image</label>
+                    <input type="file" class="form-control-file" id="blogImage" name="image" onchange="previewImage(event)">
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="btn btn-primary btn-block">Add Blog</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        tinymce.init({
+            selector: '#blogContent',
+            plugins: [
+                'a11ychecker', 'accordion', 'advlist', 'anchor', 'autolink', 'autosave',
+                'charmap', 'code', 'codesample', 'directionality', 'emoticons', 'exportpdf',
+                'exportword', 'fullscreen', 'help', 'image', 'importcss', 'importword',
+                'insertdatetime', 'link', 'lists', 'markdown', 'math', 'media', 'nonbreaking',
+                'pagebreak', 'preview', 'quickbars', 'save', 'searchreplace', 'table',
+                'visualblocks', 'visualchars', 'wordcount'
+            ],
+            toolbar: 'undo redo | accordion accordionremove | ' +
+                'importword exportword exportpdf | math | ' +
+                'blocks fontfamily fontsize | bold italic underline strikethrough | ' +
+                'align numlist bullist | link image | table media | ' +
+                'lineheight outdent indent | forecolor backcolor removeformat | ' +
+                'charmap emoticons | code fullscreen preview | save print | ' +
+                'pagebreak anchor codesample | ltr rtl',
+            menubar: 'file edit view insert format tools table help'
+        });
+    </script>
+    <script>
+        // tinymce.init({
+        //     selector: '#blogContent',
+        //     height: 300,
+        //     menubar: false,
+        //     plugins: 'advlist autolink lists link image charmap print preview anchor',
+        //     toolbar: 'undo redo | formatselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+        //     branding: false
+        // });
+
+        // Image Preview Function
+        function previewImage(event) {
+            const image = event.target.files[0];
+            const reader = new FileReader();
+
+            reader.onload = function () {
+                const imagePreview = document.getElementById('imagePreview');
+                imagePreview.src = reader.result;
+                imagePreview.style.display = 'block'; // Show the image preview
+            }
+
+            if (image) {
+                reader.readAsDataURL(image);
+            }
+        }
+    </script>
+</body>
+</html>
